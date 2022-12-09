@@ -1,11 +1,13 @@
 import React from 'react';
-import './TodoListCompleteAll.css'
-
+import './TodoListCompleteAll.css';
 const TodoListCompleteAll = ({todos, dispatch}) => {
+    if (todos.length === 0) {
+        return null
+    }
 
     return (
         todos.length
-        ?   <button
+        &&   <button
                 className={todos.filter(item => !item.isCompleted).length
                     ? "todoList-complete-all"
                     : "todoList-complete-all active"}
@@ -17,7 +19,6 @@ const TodoListCompleteAll = ({todos, dispatch}) => {
                     alt="checkAll.png"
                 />
             </button>
-        : ''
     )
 }
 

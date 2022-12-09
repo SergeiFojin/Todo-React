@@ -1,7 +1,7 @@
 const reducer = (state, action) => {
     switch(action.type) {
         case "addTodo":
-            return [...state, {id: `${Date.now()}`, value: `${action.payload}`, isCompleted: false, isVisible: true}]
+            return [...state, {id: `${Date.now()}`, value: action.payload, isCompleted: false, isVisible: true}]
 
         case "completeTodo":
             return state.map(item => {
@@ -16,28 +16,12 @@ const reducer = (state, action) => {
 
         case "completeAllTodo":
             const newTodos = [...state]
-            newTodos.filter(item => !item.isCompleted).length
-                ? newTodos.forEach(item => item.isCompleted = true)
-                : newTodos.forEach(item => item.isCompleted = false)
-            return [...newTodos]
-
-        case "allTodos":
-            return state.map(item => {
-                item.isVisible = true
-                return item
-            })
-
-        case "uncompleteTodos":
-            return state.map(item => {
-                item.isVisible = !item.isCompleted
-                return item
-            })
-
-        case "completeTodos":
-            return state.map(item => {
-                item.isVisible = item.isCompleted
-                return item
-            })
+            if (newTodos.filter(item => !item.isCompleted).length !== 0) {
+                newTodos.forEach(item => item.isCompleted = true)
+            } else {
+                newTodos.forEach(item => item.isCompleted = false)
+            }
+            return newTodos
 
         case "clearCompleted":
             return state.filter(item => !item.isCompleted)

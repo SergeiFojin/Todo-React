@@ -1,8 +1,8 @@
-import './App.css';
 import {useReducer, useState} from "react";
 import TodoInput from "./components/input/TodoInput";
 import TodoList from "./components/todoList/TodoList";
 import reducer from "./components/reducer/reducer";
+import './App.css';
 
 function App() {
     const [state, dispatch] = useReducer(reducer, []);
