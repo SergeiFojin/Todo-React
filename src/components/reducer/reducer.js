@@ -1,7 +1,7 @@
 const reducer = (state, action) => {
     switch(action.type) {
         case "addTodo":
-            return [...state, {id: `${Date.now()}`, value: action.payload, isCompleted: false, isVisible: true}]
+            return [...state, {id: `${Date.now()}`, value: action.payload, isCompleted: false}]
 
         case "completeTodo":
             return state.map(item => {
@@ -16,6 +16,7 @@ const reducer = (state, action) => {
 
         case "completeAllTodo":
             const newTodos = [...state]
+
             if (newTodos.filter(item => !item.isCompleted).length !== 0) {
                 newTodos.forEach(item => item.isCompleted = true)
             } else {
