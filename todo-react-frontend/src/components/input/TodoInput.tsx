@@ -1,6 +1,13 @@
 import React from 'react';
 import './TodoInput.css'
-const TodoInput = ({value, setValue, addTodo}) => {
+
+type TodoInputProps = {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  addTodo: Function;
+}
+
+const TodoInput = ({value, setValue, addTodo}: TodoInputProps) => {
     return (
         <div className="input-wrapper">
             <input className="input-body"

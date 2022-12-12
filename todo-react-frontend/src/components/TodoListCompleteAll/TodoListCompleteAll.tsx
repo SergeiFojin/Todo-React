@@ -1,6 +1,14 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import './TodoListCompleteAll.css';
-const TodoListCompleteAll = ({todos, dispatch}) => {
+import {Todo} from "../../types/types";
+import {TodoAction, TodoActionsEnum} from "../../store/actions";
+
+type TodoListCompleteAllProps = {
+    todos: Todo[];
+    dispatch: Dispatch<TodoAction>;
+}
+
+const TodoListCompleteAll = ({todos, dispatch}: TodoListCompleteAllProps) => {
     if (todos.length === 0) {
         return null
     }
@@ -10,7 +18,7 @@ const TodoListCompleteAll = ({todos, dispatch}) => {
             className={todos.filter(item => !item.isCompleted).length
                 ? "todoList-complete-all"
                 : "todoList-complete-all active"}
-            onClick={() => dispatch ({type: "completeAllTodo"})}
+            onClick={() => dispatch ({type: TodoActionsEnum.COMPLETE_ALL_TODO})}
         >
             <img
                 className="todoList-complete-all-img"

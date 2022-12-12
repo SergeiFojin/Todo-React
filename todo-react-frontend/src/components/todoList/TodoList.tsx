@@ -1,10 +1,18 @@
-import React, {useState} from 'react';
+import React, {Dispatch, useState} from 'react';
+import './TodoList.css';
+import {Todo} from "../../types/types";
+import {TodoAction} from "../../store/actions";
 import TodoListFooter from "../TodoListFooter/TodoListFooter";
 import TodoListItem from "../TodoListItem/TodoListItem";
 import TodoListCompleteAll from "../TodoListCompleteAll/TodoListCompleteAll";
-import './TodoList.css';
-const TodoList = ({todos, dispatch}) => {
-    const [filter, setFilter] = useState('All');
+
+type TodoListProps = {
+  todos: Todo[];
+  dispatch: Dispatch<TodoAction>;
+}
+
+const TodoList = ({todos, dispatch}: TodoListProps) => {
+    const [filter, setFilter] = useState<string>('All');
 
     if (todos.length === 0) {
         return null
@@ -25,7 +33,7 @@ const TodoList = ({todos, dispatch}) => {
 
                     return !todo.isCompleted;
                 }).map(todo =>
-                    <TodoListItem item={todo} dispatch={dispatch} key={todo.id}/>
+                    <TodoListItem todo={todo} dispatch={dispatch} key={todo.id}/>
                 )}
             </ul>
             <TodoListFooter
