@@ -18,6 +18,7 @@ const App = () =>  {
         type: TodoActionsEnum.ADD_TODO,
         payload: value
       })
+
       setValue('');
     }
   }

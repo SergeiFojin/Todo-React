@@ -10,17 +10,21 @@ type AddTodoAction = {
   type: TodoActionsEnum.ADD_TODO;
   payload: string;
 }
+
 type CompleteTodoAction = {
   type: TodoActionsEnum.COMPLETE_TODO;
   payload: string;
 }
+
 type DeleteTodoAction = {
   type: TodoActionsEnum.DELETE_TODO;
   payload: string;
 }
+
 type CompleteAllTodoAction = {
   type: TodoActionsEnum.COMPLETE_ALL_TODO;
 }
+
 type ClearCompletedAction = {
   type: TodoActionsEnum.CLEAR_COMPLETED;
 }

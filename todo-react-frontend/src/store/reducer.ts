@@ -25,9 +25,10 @@ const reducer = (todos: Todo[], action: TodoAction): Todo[] => {
 
             if (newTodos.filter(item => !item.isCompleted).length !== 0) {
                 newTodos.forEach(item => item.isCompleted = true)
-            } else {
-                newTodos.forEach(item => item.isCompleted = false)
+                return newTodos
             }
+
+            newTodos.forEach(item => item.isCompleted = false)
             return newTodos
 
         case TodoActionsEnum.CLEAR_COMPLETED:
