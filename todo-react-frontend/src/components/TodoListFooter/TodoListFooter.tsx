@@ -1,6 +1,15 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import './TodoListFooter.css'
-const TodoListFooter = ({todos, dispatch, setFilter}) => {
+import {Todo} from "../../types/types";
+import {TodoAction, TodoActionsEnum} from "../../store/actions";
+
+type TodoListFooterProps = {
+    todos: Todo[];
+    dispatch: Dispatch<TodoAction>;
+    setFilter: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const TodoListFooter = ({todos, dispatch, setFilter}: TodoListFooterProps ) => {
     if (todos.length === 0) {
         return null
     }
@@ -30,7 +39,7 @@ const TodoListFooter = ({todos, dispatch, setFilter}) => {
             {todos.findIndex(item => item.isCompleted) !== -1
                 &&  <button
                         className="todoList-footer-clear footer-button"
-                        onClick={() => dispatch ({type: "clearCompleted"})}
+                        onClick={() => dispatch ({type: TodoActionsEnum.CLEAR_COMPLETED})}
                     >
                         Clear completed
                     </button>
