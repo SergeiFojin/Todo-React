@@ -33,7 +33,7 @@ const TodoList = ({todos, dispatch}: TodoListProps) => {
 
                     return !todo.isCompleted;
                 }).map(todo =>
-                    <TodoListItem todo={todo} dispatch={dispatch} key={todo.id}/>
+                    <TodoListItem todo={todo} dispatch={dispatch} key={todo._id}/>
                 )}
             </ul>
             <TodoListFooter
