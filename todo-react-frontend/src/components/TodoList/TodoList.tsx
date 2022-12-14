@@ -1,20 +1,16 @@
-import React, {Dispatch, useState} from 'react';
+import React, {useState} from 'react';
 import './TodoList.css';
 import {Todo} from "../../types/types";
-import {TodoAction} from "../../store/actions";
 import TodoListFooter from "../TodoListFooter/TodoListFooter";
 import TodoListItem from "../TodoListItem/TodoListItem";
 import TodoListCompleteAll from "../TodoListCompleteAll/TodoListCompleteAll";
 import {useNavigate} from "react-router-dom";
+import {useAppSelector} from "../../store/hooks";
 
-type TodoListProps = {
-  todos: Todo[];
-  dispatch: Dispatch<TodoAction>;
-}
-
-const TodoList = ({todos, dispatch}: TodoListProps) => {
+const TodoList = () => {
     const [filter, setFilter] = useState<string>('All');
     const navigate = useNavigate();
+    const todos: Todo[] = useAppSelector(state => state);
 
     if (todos.length === 0) {
         return null
@@ -26,7 +22,7 @@ const TodoList = ({todos, dispatch}: TodoListProps) => {
 
     return (
         <div className="todoList-wrapper">
-            <TodoListCompleteAll todos={todos} dispatch={dispatch}/>
+            <TodoListCompleteAll/>
             <ul className="todoList-body">
                 {todos.filter(todo => {
                     if (filter === 'All') {
@@ -39,12 +35,10 @@ const TodoList = ({todos, dispatch}: TodoListProps) => {
 
                     return !todo.isCompleted;
                 }).map(todo =>
-                    <TodoListItem todo={todo} dispatch={dispatch} onClick={() => navigateToTodo(todo)} key={todo._id}/>
+                    <TodoListItem todo={todo} onClick={() => navigateToTodo(todo)} key={todo._id}/>
                 )}
             </ul>
             <TodoListFooter
-                todos={todos}
-                dispatch={dispatch}
                 setFilter={setFilter}
             />
         </div>

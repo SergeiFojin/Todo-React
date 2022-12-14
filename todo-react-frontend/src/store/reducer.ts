@@ -1,14 +1,17 @@
 import {Todo} from "../types/types";
 import {TodoAction, TodoActionsEnum} from "./actions";
 
-const reducer = (todos: Todo[], action: TodoAction): Todo[] => {
+const defaultTodos: Todo[] = [];
+
+const reducer = (todos = defaultTodos, action: TodoAction): Todo[] => {
     switch(action.type) {
 
         case TodoActionsEnum.ADD_TODO:
             return [...todos, action.payload]
 
         case TodoActionsEnum.COMPLETE_TODO:
-            return todos.map(item => {
+            const completeTodos = [...todos]
+            return completeTodos.map(item => {
                 if (item._id === action.payload) {
                     item.isCompleted = !item.isCompleted
                 }
