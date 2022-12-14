@@ -10,6 +10,7 @@ const initialState: stateType = {
 };
 
 const reducer = (state = initialState, action: TodoAction): stateType => {
+
     switch(action.type) {
 
         case TodoActionsEnum.ADD_TODO:
