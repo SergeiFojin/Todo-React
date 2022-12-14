@@ -5,12 +5,11 @@ const reducer = (todos: Todo[], action: TodoAction): Todo[] => {
     switch(action.type) {
 
         case TodoActionsEnum.ADD_TODO:
-            const newTodo: Todo = {id: `${Date.now()}`, value: action.payload, isCompleted: false};
-            return [...todos, newTodo]
+            return [...todos, action.payload]
 
         case TodoActionsEnum.COMPLETE_TODO:
             return todos.map(item => {
-                if (item.id === action.payload) {
+                if (item._id === action.payload) {
                     item.isCompleted = !item.isCompleted
                 }
 
@@ -18,7 +17,7 @@ const reducer = (todos: Todo[], action: TodoAction): Todo[] => {
             })
 
         case TodoActionsEnum.DELETE_TODO:
-            return todos.filter(item => item.id !== action.payload)
+            return todos.filter(item => item._id !== action.payload)
 
         case TodoActionsEnum.COMPLETE_ALL_TODO:
             const newTodos: Todo[] = [...todos]
@@ -33,6 +32,9 @@ const reducer = (todos: Todo[], action: TodoAction): Todo[] => {
 
         case TodoActionsEnum.CLEAR_COMPLETED:
             return todos.filter(item => !item.isCompleted)
+
+        case TodoActionsEnum.GET_TODOS:
+            return action.payload
 
         default:
             return todos

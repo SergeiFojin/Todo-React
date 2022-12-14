@@ -1,0 +1,4 @@
+export default {
+  PORT: 4000,
+  DATABASE_URL: `mongodb+srv://User:123@cluster0.pizpzvp.mongodb.net/?retryWrites=true&w=majority`,
+}
