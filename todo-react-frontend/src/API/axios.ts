@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function getTasksRequest() {
     try {
-        const response = await axios.get('http://localhost:4000/api/');
+        const response = await axios.get(`${process.env.REACT_APP_LOCALHOST_URL}/api/`);
         return response.data;
     } catch (e) {
         console.log(e);
@@ -11,7 +11,7 @@ export async function getTasksRequest() {
 
 export async function addTaskRequest (value: string, isCompleted: boolean) {
     try {
-        const response = await axios.post(`http://localhost:4000/api/task`, {
+        const response = await axios.post(`${process.env.REACT_APP_LOCALHOST_URL}/api/task`, {
             value,
             isCompleted
         })
@@ -23,7 +23,7 @@ export async function addTaskRequest (value: string, isCompleted: boolean) {
 
 export async function completeTaskRequest (id: string, isCompleted: boolean) {
     try {
-        const response = await axios.put(`http://localhost:4000/api/task`, {
+        const response = await axios.put(`${process.env.REACT_APP_LOCALHOST_URL}/api/task`, {
             id,
             isCompleted
         })
@@ -35,7 +35,7 @@ export async function completeTaskRequest (id: string, isCompleted: boolean) {
 
 export async function deleteTaskRequest (id: string) {
     try {
-        const response = await axios.delete(`http://localhost:4000/api/task?id=${id}`);
+        const response = await axios.delete(`${process.env.REACT_APP_LOCALHOST_URL}/api/task?id=${id}`);
         return response.data;
     } catch (e) {
         console.log(e);

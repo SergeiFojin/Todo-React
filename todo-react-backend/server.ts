@@ -1,14 +1,14 @@
 import * as express from "express";
-import * as dotenv from "dotenv";
+import "dotenv/config";
 import cors from "cors";
 import mongoose from "mongoose";
 import tasks from './taskRouter';
-import endpoint from "./endpoints.config";
-dotenv.config();
+
 mongoose.set('strictQuery', false);
+
 const app = express.default();
-const PORT: number = endpoint.PORT || 4000;
-const DATABASE_URL: string = endpoint.DATABASE_URL;
+const PORT: number = 4000;
+const DATABASE_URL: string = `${process.env.DATABASE_URL}`;
 
 app.use(cors());
 app.use(express.json());

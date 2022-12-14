@@ -5,6 +5,7 @@ import {TodoAction} from "../../store/actions";
 import TodoListFooter from "../TodoListFooter/TodoListFooter";
 import TodoListItem from "../TodoListItem/TodoListItem";
 import TodoListCompleteAll from "../TodoListCompleteAll/TodoListCompleteAll";
+import {useNavigate} from "react-router-dom";
 
 type TodoListProps = {
   todos: Todo[];
@@ -13,6 +14,7 @@ type TodoListProps = {
 
 const TodoList = ({todos, dispatch}: TodoListProps) => {
     const [filter, setFilter] = useState<string>('All');
+    const navigate = useNavigate();
 
     if (todos.length === 0) {
         return null
@@ -33,7 +35,7 @@ const TodoList = ({todos, dispatch}: TodoListProps) => {
 
                     return !todo.isCompleted;
                 }).map(todo =>
-                    <TodoListItem todo={todo} dispatch={dispatch} key={todo._id}/>
+                    <TodoListItem todo={todo} dispatch={dispatch} onClick={(todo) => navigate(`/todos/${todo._id}/${todo.value}/${todo.isCompleted}`)} key={todo._id}/>
                 )}
             </ul>
             <TodoListFooter
