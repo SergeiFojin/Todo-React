@@ -12,7 +12,7 @@ type TodoListItemProps = {
 
 const TodoListItem = ({todo, dispatch, onClick}: TodoListItemProps) => {
 
-  const completeTodo = (todoId: string, todoIsCompleted: boolean, e: any) => {
+  const completeTodo = (todoId: string, todoIsCompleted: boolean, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation()
     dispatch ({
       type: TodoActionsEnum.COMPLETE_TODO,
@@ -21,7 +21,7 @@ const TodoListItem = ({todo, dispatch, onClick}: TodoListItemProps) => {
     completeTaskRequest(`${todoId}`, todoIsCompleted)
   }
 
-  const deleteTodo = (todoId: string, e: any) => {
+  const deleteTodo = (todoId: string, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation()
     dispatch ({
       type: TodoActionsEnum.DELETE_TODO,

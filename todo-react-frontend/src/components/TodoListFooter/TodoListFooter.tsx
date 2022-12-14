@@ -45,7 +45,7 @@ const TodoListFooter = ({todos, dispatch, setFilter}: TodoListFooterProps ) => {
             {todos.findIndex(item => item.isCompleted) !== -1
                 &&  <button
                         className="todoList-footer-clear footer-button"
-                        onClick={() => clearCompleted()}
+                        onClick={clearCompleted}
                     >
                         Clear completed
                     </button>

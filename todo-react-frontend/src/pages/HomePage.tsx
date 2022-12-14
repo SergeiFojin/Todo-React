@@ -1,6 +1,6 @@
 import React, {Dispatch, useEffect, useState} from 'react';
 import TodoInput from "../components/input/TodoInput";
-import TodoList from "../components/todoList/TodoList";
+import TodoList from "../components/TodoList/TodoList";
 import {Todo} from "../types/types";
 import { addTaskRequest, getTasksRequest } from "../API/axios";
 import {TodoAction, TodoActionsEnum} from "../store/actions";
@@ -11,6 +11,7 @@ type HomePageProps = {
 }
 
 const HomePage = ({todos, dispatch}: HomePageProps) => {
+  const [value, setValue] = useState<string>('');
 
   useEffect(() => {
     getTasksRequest()
@@ -21,8 +22,6 @@ const HomePage = ({todos, dispatch}: HomePageProps) => {
         })
       })
   }, [])
-
-  const [value, setValue] = useState<string>('');
 
   const addTodo = async (value: string) => {
     if (value !== '') {

@@ -15,7 +15,6 @@ type TodoPageParams = {
 }
 
 const TodoPage = ({dispatch}: TodoPageProps) => {
-
   const params = useParams<TodoPageParams>();
   const navigate = useNavigate();
   const initialState = {_id: params._id!, value: params.value!, isCompleted: params.isCompleted === 'true'};
@@ -32,13 +31,17 @@ const TodoPage = ({dispatch}: TodoPageProps) => {
     completeTaskRequest(`${todoId}`, todoIsCompleted);
   }
 
+  const navigateToMain = () => {
+    navigate('/')
+  }
+
   return (
     <div className="App">
       <header className="App-header">todos</header>
       <div className="todoList-item" id={todo._id}>
         <button className="todoList-item-complete" onClick={() => completeTodo(todo._id, todo.isCompleted)}>
-          {todo.isCompleted
-            && <img className="todoList-item-complete-img" src="/source/checkmark.png" alt="checkmark.png"/>
+          {todo.isCompleted &&
+            (<img className="todoList-item-complete-img" src="/source/checkmark.png" alt="checkmark.png"/>)
           }
         </button>
         <input
@@ -47,7 +50,7 @@ const TodoPage = ({dispatch}: TodoPageProps) => {
           value={todo.value}
           disabled={true}
         />
-        <button className="todoList-item-delete" onClick={() => navigate('/')}>
+        <button className="todoList-item-delete" onClick={navigateToMain}>
           <img className="todoList-item-back-img" src="/source/back.png" alt="back.png"/>
         </button>
       </div>

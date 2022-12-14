@@ -35,7 +35,7 @@ const TodoList = ({todos, dispatch}: TodoListProps) => {
 
                     return !todo.isCompleted;
                 }).map(todo =>
-                    <TodoListItem todo={todo} dispatch={dispatch} onClick={(todo) => navigate(`/todos/${todo._id}/${todo.value}/${todo.isCompleted}`)} key={todo._id}/>
+                    <TodoListItem todo={todo} dispatch={dispatch} onClick={() => navigate(`/todos/${todo._id}/${todo.value}/${todo.isCompleted}`)} key={todo._id}/>
                 )}
             </ul>
             <TodoListFooter
