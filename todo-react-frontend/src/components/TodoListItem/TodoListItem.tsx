@@ -1,10 +1,8 @@
 import React from 'react';
 import './TodoListItem.css'
 import {Todo} from "../../types/types";
-import {TodoActionsEnum} from "../../store/actions";
-import {completeTaskRequest, deleteTaskRequest} from "../../API/axios";
 import {useAppDispatch} from "../../store/hooks";
-import {Dispatch} from "@reduxjs/toolkit";
+import {completeTodoThunk, deleteTodoThunk} from "../../store/thunks";
 
 type TodoListItemProps = {
   todo: Todo;
@@ -12,24 +10,16 @@ type TodoListItemProps = {
 }
 
 const TodoListItem = ({todo, onClick}: TodoListItemProps) => {
-  const dispatch: Dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const completeTodo = (todoId: string, todoIsCompleted: boolean, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation()
-    dispatch ({
-      type: TodoActionsEnum.COMPLETE_TODO,
-      payload: todoId
-    })
-    completeTaskRequest(`${todoId}`, todoIsCompleted)
+    dispatch(completeTodoThunk(todoId, todoIsCompleted))
   }
 
   const deleteTodo = (todoId: string, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation()
-    dispatch ({
-      type: TodoActionsEnum.DELETE_TODO,
-      payload: todoId
-    })
-    deleteTaskRequest(`${todoId}`)
+    dispatch(deleteTodoThunk(todoId))
   }
 
     return (
