@@ -1,16 +1,19 @@
-import React, {Dispatch} from 'react';
+import React from 'react';
 import './TodoListFooter.css'
 import {Todo} from "../../types/types";
-import {TodoAction, TodoActionsEnum} from "../../store/actions";
+import {TodoActionsEnum} from "../../store/actions";
 import {deleteTaskRequest} from "../../API/axios";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
+import {Dispatch} from "@reduxjs/toolkit";
 
 type TodoListFooterProps = {
-    todos: Todo[];
-    dispatch: Dispatch<TodoAction>;
     setFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const TodoListFooter = ({todos, dispatch, setFilter}: TodoListFooterProps ) => {
+const TodoListFooter = ({setFilter}: TodoListFooterProps ) => {
+    const dispatch: Dispatch = useAppDispatch();
+    const todos: Todo[] = useAppSelector(state => state.todos);
+
     if (todos.length === 0) {
         return null
     }

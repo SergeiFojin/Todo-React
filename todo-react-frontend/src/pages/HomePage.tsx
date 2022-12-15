@@ -1,17 +1,15 @@
-import React, {Dispatch, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TodoInput from "../components/input/TodoInput";
 import TodoList from "../components/TodoList/TodoList";
-import {Todo} from "../types/types";
 import { addTaskRequest, getTasksRequest } from "../API/axios";
-import {TodoAction, TodoActionsEnum} from "../store/actions";
+import {TodoActionsEnum} from "../store/actions";
+import {useAppDispatch} from "../store/hooks";
+import {Dispatch} from "@reduxjs/toolkit";
 
-type HomePageProps = {
-  todos: Todo[];
-  dispatch: Dispatch<TodoAction>;
-}
 
-const HomePage = ({todos, dispatch}: HomePageProps) => {
+const HomePage = () => {
   const [value, setValue] = useState<string>('');
+  const dispatch: Dispatch = useAppDispatch();
 
   useEffect(() => {
     getTasksRequest()
@@ -41,7 +39,7 @@ const HomePage = ({todos, dispatch}: HomePageProps) => {
     <div className="App">
       <header className="App-header">todos</header>
       <TodoInput value={value} setValue={setValue} addTodo={addTodo}/>
-      <TodoList todos={todos} dispatch={dispatch}/>
+      <TodoList/>
     </div>
   );
 }

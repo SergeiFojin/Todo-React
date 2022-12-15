@@ -1,16 +1,23 @@
-import React, {Dispatch} from 'react';
+import React from 'react';
 import './TodoListCompleteAll.css';
 import {Todo} from "../../types/types";
-import {TodoAction, TodoActionsEnum} from "../../store/actions";
+import {TodoActionsEnum} from "../../store/actions";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
+import {Dispatch} from "@reduxjs/toolkit";
+import {completeTaskRequest} from "../../API/axios";
 
-type TodoListCompleteAllProps = {
-    todos: Todo[];
-    dispatch: Dispatch<TodoAction>;
-}
+const TodoListCompleteAll = () => {
+    const dispatch: Dispatch = useAppDispatch();
+    const todos: Todo[] = useAppSelector(state => state.todos);
 
-const TodoListCompleteAll = ({todos, dispatch}: TodoListCompleteAllProps) => {
     if (todos.length === 0) {
         return null
+    }
+
+    const completeAllTodo = () => {
+        dispatch ({type: TodoActionsEnum.COMPLETE_ALL_TODO});
+        const completeCheck = todos.length === todos.filter(item => item.isCompleted).length ? 'false' : 'true';
+        completeTaskRequest(completeCheck, true);
     }
 
     return (
@@ -18,7 +25,7 @@ const TodoListCompleteAll = ({todos, dispatch}: TodoListCompleteAllProps) => {
             className={todos.filter(item => !item.isCompleted).length
                 ? "todoList-complete-all"
                 : "todoList-complete-all active"}
-            onClick={() => dispatch ({type: TodoActionsEnum.COMPLETE_ALL_TODO})}
+            onClick={completeAllTodo}
         >
             <img
                 className="todoList-complete-all-img"

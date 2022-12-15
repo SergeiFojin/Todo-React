@@ -1,16 +1,18 @@
-import React, {Dispatch} from 'react';
+import React from 'react';
 import './TodoListItem.css'
 import {Todo} from "../../types/types";
-import {TodoAction, TodoActionsEnum} from "../../store/actions";
+import {TodoActionsEnum} from "../../store/actions";
 import {completeTaskRequest, deleteTaskRequest} from "../../API/axios";
+import {useAppDispatch} from "../../store/hooks";
+import {Dispatch} from "@reduxjs/toolkit";
 
 type TodoListItemProps = {
   todo: Todo;
-  dispatch: Dispatch<TodoAction>;
   onClick: (todo: Todo) => void;
 }
 
-const TodoListItem = ({todo, dispatch, onClick}: TodoListItemProps) => {
+const TodoListItem = ({todo, onClick}: TodoListItemProps) => {
+  const dispatch: Dispatch = useAppDispatch();
 
   const completeTodo = (todoId: string, todoIsCompleted: boolean, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation()

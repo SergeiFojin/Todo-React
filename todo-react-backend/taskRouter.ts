@@ -1,4 +1,4 @@
-import * as     express from "express";
+import * as express from "express";
 const router = express.Router();
 import Todos from './task-model';
 import {Request, Response} from "express";
@@ -24,8 +24,17 @@ router.post('/task', async (req: Request, res: Response) => {
 
 router.put('/task', async (_req: Request, _res: Response) => {
     try {
-        await Todos.updateOne({_id: _req.body.id}, {isCompleted: !_req.body.isCompleted});
-        _res.status(200).send(`Task with id = ${_req.body.id} was changed.`);
+        if (_req.body.id === 'true') {
+            await Todos.updateMany({isCompleted: true})
+            _res.status(200).send(`All tasks was completed.`);
+        }
+        else if (_req.body.id === 'false') {
+            await Todos.updateMany({isCompleted: false})
+            _res.status(200).send(`All tasks was uncompleted.`);
+        } else {
+            await Todos.updateOne({_id: _req.body.id}, {isCompleted: !_req.body.isCompleted});
+            _res.status(200).send(`Task with id = ${_req.body.id} was changed.`);
+        }
     } catch (e) {
         _res.status(400).json(e);
     }

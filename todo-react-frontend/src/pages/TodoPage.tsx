@@ -1,12 +1,10 @@
-import React, {Dispatch, useState} from 'react';
+import React, {useState} from 'react';
 import {Todo} from "../types/types";
-import {TodoAction, TodoActionsEnum} from "../store/actions";
+import {TodoActionsEnum} from "../store/actions";
 import {completeTaskRequest} from "../API/axios";
-import { useNavigate, useParams} from "react-router-dom";
-
-type TodoPageProps = {
-  dispatch: Dispatch<TodoAction>;
-}
+import {useNavigate, useParams} from "react-router-dom";
+import {useAppDispatch} from "../store/hooks";
+import {Dispatch} from "@reduxjs/toolkit";
 
 type TodoPageParams = {
   _id: string;
@@ -14,7 +12,8 @@ type TodoPageParams = {
   isCompleted: string
 }
 
-const TodoPage = ({dispatch}: TodoPageProps) => {
+const TodoPage = () => {
+  const dispatch: Dispatch = useAppDispatch();
   const params = useParams<TodoPageParams>();
   const navigate = useNavigate();
   const initialState = {_id: params._id!, value: params.value!, isCompleted: params.isCompleted === 'true'};
