@@ -1,25 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import TodoInput from "../components/input/TodoInput";
 import TodoList from "../components/TodoList/TodoList";
-import { addTaskRequest, getTasksRequest } from "../API/axios";
+import {addTaskRequest} from "../API/axios";
 import {TodoActionsEnum} from "../store/actions";
 import {useAppDispatch} from "../store/hooks";
 import {Dispatch} from "@reduxjs/toolkit";
-
+import {getTodos} from "../store/thunks";
 
 const HomePage = () => {
   const [value, setValue] = useState<string>('');
   const dispatch: Dispatch = useAppDispatch();
 
   useEffect(() => {
-    getTasksRequest()
-      .then(data => {
-        dispatch({
-          type: TodoActionsEnum.GET_TODOS,
-          payload: data
-        })
-      })
-  }, [])
+    dispatch<any>(getTodos())
+  }, [dispatch])
 
   const addTodo = async (value: string) => {
     if (value !== '') {
