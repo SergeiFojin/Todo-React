@@ -31,16 +31,8 @@ const reducer = (state = initialState, action: TodoAction): stateType => {
 
         case TodoActionsEnum.COMPLETE_ALL_TODO:
             const completeAllTodos: Todo[] = [...state.todos]
-
-            if (completeAllTodos.filter(item => !item.isCompleted).length !== 0) {
-                return {todos: completeAllTodos.map(item => {
-                    return {...item, isCompleted: true}
-                    })
-                }
-            }
-
             return {todos: completeAllTodos.map(item => {
-                return {...item, isCompleted: false}
+                return {...item, isCompleted: completeAllTodos.filter(item => !item.isCompleted).length !== 0}
                 })
             }
 
