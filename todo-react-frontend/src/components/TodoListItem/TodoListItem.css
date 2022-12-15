@@ -5,6 +5,7 @@
     flex-direction: row;
     padding: 16px;
     border: 1px solid whitesmoke;
+    background-color: white;
 }
 
 .todoList-item-complete {
@@ -56,4 +57,13 @@
 
 .todoList-item-delete-img:hover {
     opacity: 0.7;
+}
+
+.todoList-item-back-img {
+    width: 25px;
+    opacity: 0.3;
+}
+
+.todoList-item-back-img:hover {
+    opacity: 0.5;
 }

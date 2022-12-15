@@ -33,8 +33,13 @@ router.put('/task', async (_req: Request, _res: Response) => {
 
 router.delete(`/task`, async (_req: Request, _res: Response) => {
     try {
-        await Todos.deleteOne({_id: _req.query.id});
-        _res.status(200).send(`Task with id = ${_req.query.id} was deleted.`);
+        if (_req.query.id) {
+            await Todos.deleteOne({_id: _req.query.id});
+            _res.status(200).send(`Task with id = ${_req.query.id} was deleted.`);
+        } else {
+            await Todos.deleteMany({isCompleted: true});
+            _res.status(200).send(`Completed tasks was deleted.`);
+        }
     } catch (e) {
         _res.status(400).json(e);
     }

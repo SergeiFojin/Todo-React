@@ -2,6 +2,7 @@ import React, {Dispatch} from 'react';
 import './TodoListFooter.css'
 import {Todo} from "../../types/types";
 import {TodoAction, TodoActionsEnum} from "../../store/actions";
+import {deleteTaskRequest} from "../../API/axios";
 
 type TodoListFooterProps = {
     todos: Todo[];
@@ -12,6 +13,11 @@ type TodoListFooterProps = {
 const TodoListFooter = ({todos, dispatch, setFilter}: TodoListFooterProps ) => {
     if (todos.length === 0) {
         return null
+    }
+
+    const clearCompleted = () => {
+        dispatch ({type: TodoActionsEnum.CLEAR_COMPLETED});
+        deleteTaskRequest('')
     }
 
     return (
@@ -39,7 +45,7 @@ const TodoListFooter = ({todos, dispatch, setFilter}: TodoListFooterProps ) => {
             {todos.findIndex(item => item.isCompleted) !== -1
                 &&  <button
                         className="todoList-footer-clear footer-button"
-                        onClick={() => dispatch ({type: TodoActionsEnum.CLEAR_COMPLETED})}
+                        onClick={clearCompleted}
                     >
                         Clear completed
                     </button>

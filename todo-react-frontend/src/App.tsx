@@ -1,49 +1,24 @@
-import React, {useEffect} from 'react';
-import {useReducer, useState} from "react";
+import React, { useReducer } from 'react';
 import './App.css';
-import TodoInput from "./components/input/TodoInput";
-import TodoList from "./components/todoList/TodoList";
+import { Todo } from "./types/types";
 import reducer from "./store/reducer";
-import {Todo} from "./types/types";
-import {TodoActionsEnum} from "./store/actions";
-import {addTaskRequest, getTasksRequest} from "./API/axios";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import TodoPage from "./pages/TodoPage";
+
 
 const App = () =>  {
   let initialState: Todo[] = [];
-
-  useEffect(() => {
-    getTasksRequest()
-      .then(data => {
-        dispatch({
-          type: TodoActionsEnum.GET_TODOS,
-          payload: data
-        })
-      })
-  }, [])
-
   const [todos, dispatch] = useReducer(reducer, initialState);
-  const [value, setValue] = useState<string>('');
 
-  const addTodo = async (value: string) => {
-    if (value !== '') {
-      await addTaskRequest( value, false)
-        .then(data => {
-          dispatch({
-            type: TodoActionsEnum.ADD_TODO,
-            payload: data
-          })
-        })
-
-      setValue('');
-    }
-  }
 
   return (
-    <div className="App">
-      <header className="App-header">todos</header>
-      <TodoInput value={value} setValue={setValue} addTodo={addTodo}/>
-      <TodoList todos={todos} dispatch={dispatch}/>
-    </div>
+    <BrowserRouter>
+        <Routes>
+          <Route path={'/'} element={<HomePage todos={todos} dispatch={dispatch}/>}/>
+          <Route path={'/todos/:_id/:value/:isCompleted'} element={<TodoPage dispatch={dispatch}/>}/>
+        </Routes>
+    </BrowserRouter>
   );
 }
 
