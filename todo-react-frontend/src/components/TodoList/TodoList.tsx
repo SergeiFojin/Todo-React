@@ -10,7 +10,7 @@ import {useAppSelector} from "../../store/hooks";
 const TodoList = () => {
     const [filter, setFilter] = useState<string>('All');
     const navigate = useNavigate();
-    const todos: Todo[] = useAppSelector(state => state);
+    const todos: Todo[] = useAppSelector(state => state.todos);
 
     if (todos.length === 0) {
         return null

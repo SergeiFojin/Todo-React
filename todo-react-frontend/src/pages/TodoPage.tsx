@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {Todo} from "../types/types";
 import {TodoActionsEnum} from "../store/actions";
 import {completeTaskRequest} from "../API/axios";
-import { useNavigate, useParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAppDispatch} from "../store/hooks";
 import {Dispatch} from "@reduxjs/toolkit";
 
 type TodoPageParams = {

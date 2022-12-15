@@ -8,17 +8,16 @@ import {completeTaskRequest} from "../../API/axios";
 
 const TodoListCompleteAll = () => {
     const dispatch: Dispatch = useAppDispatch();
-    const todos: Todo[] = useAppSelector(state => state);
+    const todos: Todo[] = useAppSelector(state => state.todos);
 
     if (todos.length === 0) {
         return null
     }
 
     const completeAllTodo = () => {
-        dispatch ({type: TodoActionsEnum.COMPLETE_ALL_TODO})
-        const completeCheck = todos.length === todos.filter(item => item.isCompleted).length ? 'true' : 'false'
-        console.log(completeCheck)
-        completeTaskRequest(completeCheck, true)
+        dispatch ({type: TodoActionsEnum.COMPLETE_ALL_TODO});
+        const completeCheck = todos.length === todos.filter(item => item.isCompleted).length ? 'false' : 'true';
+        completeTaskRequest(completeCheck, true);
     }
 
     return (

@@ -1,46 +1,57 @@
 import {Todo} from "../types/types";
 import {TodoAction, TodoActionsEnum} from "./actions";
 
-const defaultTodos: Todo[] = [];
+type stateType = {
+    todos: Todo[];
+}
 
-const reducer = (todos = defaultTodos, action: TodoAction): Todo[] => {
+const initialState: stateType = {
+    todos: [],
+};
+
+const reducer = (state = initialState, action: TodoAction): stateType => {
     switch(action.type) {
 
         case TodoActionsEnum.ADD_TODO:
-            return [...todos, action.payload]
+            return {todos: [...state.todos, action.payload]}
 
         case TodoActionsEnum.COMPLETE_TODO:
-            const completeTodos = [...todos]
-            return completeTodos.map(item => {
-                if (item._id === action.payload) {
-                    item.isCompleted = !item.isCompleted
-                }
-
-                return item
-            })
+            const completeTodos: Todo[] = [...state.todos]
+            return {todos:
+                  completeTodos.map(item => {
+                      let isCompletedValue: boolean = item.isCompleted;
+                      if (item._id === action.payload) {
+                        isCompletedValue = !item.isCompleted;
+                      }
+                      return {...item, isCompleted: isCompletedValue}
+                  })}
 
         case TodoActionsEnum.DELETE_TODO:
-            return todos.filter(item => item._id !== action.payload)
+            return {todos: state.todos.filter(item => item._id !== action.payload)}
 
         case TodoActionsEnum.COMPLETE_ALL_TODO:
-            const newTodos: Todo[] = [...todos]
+            const completeAllTodos: Todo[] = [...state.todos]
 
-            if (newTodos.filter(item => !item.isCompleted).length !== 0) {
-                newTodos.forEach(item => item.isCompleted = true)
-                return newTodos
+            if (completeAllTodos.filter(item => !item.isCompleted).length !== 0) {
+                return {todos: completeAllTodos.map(item => {
+                    return {...item, isCompleted: true}
+                    })
+                }
             }
 
-            newTodos.forEach(item => item.isCompleted = false)
-            return newTodos
+            return {todos: completeAllTodos.map(item => {
+                return {...item, isCompleted: false}
+                })
+            }
 
         case TodoActionsEnum.CLEAR_COMPLETED:
-            return todos.filter(item => !item.isCompleted)
+            return {todos: state.todos.filter(item => !item.isCompleted)}
 
         case TodoActionsEnum.GET_TODOS:
-            return action.payload
+            return {todos: action.payload}
 
         default:
-            return todos
+            return state
     }
 }
 

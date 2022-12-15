@@ -3,10 +3,6 @@ import reducer from "./reducer";
 
 export const store = configureStore({
   reducer: reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    immutableCheck: false,
-    serializableCheck: false,
-  })
 })
 
 export type RootState = ReturnType<typeof store.getState>
