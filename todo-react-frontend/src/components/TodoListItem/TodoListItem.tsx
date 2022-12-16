@@ -1,8 +1,7 @@
 import React from 'react';
 import './TodoListItem.css';
 import { Todo } from '../../types/types';
-import { useAppDispatch } from '../../store/hooks';
-import { completeTodoThunk, deleteTodoThunk } from '../../store/thunks';
+import { useTodoListItem } from './hooks/useTodoListItem';
 
 type TodoListItemProps = {
   todo: Todo;
@@ -10,25 +9,7 @@ type TodoListItemProps = {
 }
 
 const TodoListItem = ({ todo, onClick }: TodoListItemProps) => {
-  const dispatch = useAppDispatch();
-
-  const completeTodo = (
-    todoId: string,
-    todoIsCompleted: boolean,
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    e.stopPropagation();
-    dispatch(completeTodoThunk(todoId, todoIsCompleted));
-  };
-
-  const deleteTodo = (
-    todoId: string,
-    e: React.MouseEvent<HTMLButtonElement,
-      MouseEvent>,
-  ) => {
-    e.stopPropagation();
-    dispatch(deleteTodoThunk(todoId));
-  };
+  const { completeTodo, deleteTodo } = useTodoListItem();
 
   return (
     <div className="todoList-item" id={todo._id} onClick={() => onClick()}>
