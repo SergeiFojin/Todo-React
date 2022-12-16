@@ -1,4 +1,4 @@
-import {Todo} from "../types/types";
+import { Todo } from '../types/types';
 
 export enum TodoActionsEnum {
   ADD_TODO = 'ADD_TODO',
@@ -37,4 +37,10 @@ type GetTodosAction = {
   payload: Todo[]
 }
 
-export type TodoAction = AddTodoAction | CompleteTodoAction | DeleteTodoAction | CompleteAllTodoAction | ClearCompletedAction | GetTodosAction
+export type TodoAction =
+  AddTodoAction |
+  CompleteTodoAction |
+  DeleteTodoAction |
+  CompleteAllTodoAction |
+  ClearCompletedAction |
+  GetTodosAction
