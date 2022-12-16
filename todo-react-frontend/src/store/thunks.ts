@@ -12,7 +12,7 @@ export const getTodos = () => {
         payload: result
       })
     } catch (e) {
-      console.log(`${ErrorLogsEnum.GET_TODOS_ERROR}, ${e}`)
+      console.log(ErrorLogsEnum.GET_TODOS_ERROR, e)
     }
   }
 }
@@ -26,7 +26,7 @@ export const addTodoThunk = (value: string) => {
         payload: result
       })
     } catch (e) {
-      console.log(`${ErrorLogsEnum.ADD_TODO_ERROR}, ${e}`)
+      console.log(ErrorLogsEnum.ADD_TODO_ERROR, e)
     }
   }
 }
@@ -40,7 +40,7 @@ export const completeTodoThunk = (todoId: string, todoIsCompleted: boolean) => {
         payload: todoId
       })
     } catch (e) {
-      console.log(`${ErrorLogsEnum.COMPLETE_TODO_ERROR}, ${e}`)
+      console.log(ErrorLogsEnum.COMPLETE_TODO_ERROR, e)
     }
   }
 }
@@ -54,7 +54,7 @@ export const deleteTodoThunk = (todoId: string) => {
         payload: todoId
       })
     } catch (e) {
-      console.log(`${ErrorLogsEnum.DELETE_TODO_ERROR}, ${e}`)
+      console.log(ErrorLogsEnum.DELETE_TODO_ERROR, e)
     }
   }
 }
@@ -67,7 +67,7 @@ export const completeAllTodosThunk = (completeCheck: string) => {
         type: TodoActionsEnum.COMPLETE_ALL_TODO
       })
     } catch (e) {
-      console.log(`${ErrorLogsEnum.COMPLETE_ALL_TODO_ERROR}, ${e}`)
+      console.log(ErrorLogsEnum.COMPLETE_ALL_TODO_ERROR, e)
     }
   }
 }
@@ -80,7 +80,7 @@ export const clearCompletedThunk = () => {
         type: TodoActionsEnum.CLEAR_COMPLETED
       })
     } catch (e) {
-      console.log(`${ErrorLogsEnum.CLEAR_COMPLETED_ERROR}, ${e}`)
+      console.log(ErrorLogsEnum.CLEAR_COMPLETED_ERROR, e)
     }
   }
 }
