@@ -1,30 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Todo } from '../types/types';
-import { useAppDispatch } from '../store/hooks';
-import { completeTodoThunk } from '../store/thunks';
-
-type TodoPageParams = {
-  _id: string;
-  value: string;
-  isCompleted: string
-}
+import React from 'react';
+import { useTodoPage } from './hooks/useTodoPage';
 
 const TodoPage = () => {
-  const dispatch = useAppDispatch();
-  const params = useParams<TodoPageParams>();
-  const navigate = useNavigate();
-  const initialState = { _id: params._id || '', value: params.value || '', isCompleted: params.isCompleted === 'true' };
-  const [todo, setTodo] = useState<Todo>(initialState);
-
-  const completeTodo = (todoId: string, todoIsCompleted: boolean) => {
-    dispatch(completeTodoThunk(todoId, todoIsCompleted));
-    setTodo({ ...todo, isCompleted: !todo.isCompleted });
-  };
-
-  const navigateToMain = () => {
-    navigate('/');
-  };
+  const { todo, completeTodo, navigateToMain } = useTodoPage();
 
   return (
     <div className="App">
