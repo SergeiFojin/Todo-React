@@ -5,28 +5,30 @@ import {ErrorLogsEnum} from "../types/errorLogs";
 
 export const getTodos = () => {
   return async (dispatch: Dispatch) => {
-    try{
+    try {
       const result = await getTasksRequest()
       dispatch({
         type: TodoActionsEnum.GET_TODOS,
         payload: result
       })
-    } catch {
+    } catch (e) {
       console.log(ErrorLogsEnum.GET_TODOS_ERROR)
+      console.log(e)
     }
   }
 }
 
 export const addTodoThunk = (value: string) => {
   return async (dispatch: Dispatch) => {
-    try{
+    try {
       const result = await addTaskRequest(value, false)
       dispatch({
         type: TodoActionsEnum.ADD_TODO,
         payload: result
       })
-    } catch {
+    } catch (e) {
       console.log(ErrorLogsEnum.ADD_TODO_ERROR)
+      console.log(e)
     }
   }
 }
@@ -39,22 +41,24 @@ export const completeTodoThunk = (todoId: string, todoIsCompleted: boolean) => {
         type: TodoActionsEnum.COMPLETE_TODO,
         payload: todoId
       })
-    } catch {
+    } catch (e) {
       console.log(ErrorLogsEnum.COMPLETE_TODO_ERROR)
+      console.log(e)
     }
   }
 }
 
 export const deleteTodoThunk = (todoId: string) => {
   return async (dispatch: Dispatch) => {
-    try{
+    try {
       await deleteTaskRequest(todoId)
       dispatch({
         type: TodoActionsEnum.DELETE_TODO,
         payload: todoId
       })
-    } catch {
+    } catch (e) {
       console.log(ErrorLogsEnum.DELETE_TODO_ERROR)
+      console.log(e)
     }
   }
 }
@@ -66,8 +70,9 @@ export const completeAllTodosThunk = (completeCheck: string) => {
       dispatch({
         type: TodoActionsEnum.COMPLETE_ALL_TODO
       })
-    } catch {
+    } catch (e) {
       console.log(ErrorLogsEnum.COMPLETE_ALL_TODO_ERROR)
+      console.log(e)
     }
   }
 }
@@ -79,8 +84,9 @@ export const clearCompletedThunk = () => {
       dispatch({
         type: TodoActionsEnum.CLEAR_COMPLETED
       })
-    } catch {
+    } catch (e) {
       console.log(ErrorLogsEnum.CLEAR_COMPLETED_ERROR)
+      console.log(e)
     }
   }
 }
