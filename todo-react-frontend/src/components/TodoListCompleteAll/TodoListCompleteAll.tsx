@@ -1,13 +1,11 @@
 import React from 'react';
 import './TodoListCompleteAll.css';
 import {Todo} from "../../types/types";
-import {TodoActionsEnum} from "../../store/actions";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
-import {Dispatch} from "@reduxjs/toolkit";
-import {completeTaskRequest} from "../../API/axios";
+import {completeAllTodosThunk} from "../../store/thunks";
 
 const TodoListCompleteAll = () => {
-    const dispatch: Dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
     const todos: Todo[] = useAppSelector(state => state.todos);
 
     if (todos.length === 0) {
@@ -15,9 +13,8 @@ const TodoListCompleteAll = () => {
     }
 
     const completeAllTodo = () => {
-        dispatch ({type: TodoActionsEnum.COMPLETE_ALL_TODO});
         const completeCheck = todos.length === todos.filter(item => item.isCompleted).length ? 'false' : 'true';
-        completeTaskRequest(completeCheck, true);
+        dispatch(completeAllTodosThunk(completeCheck))
     }
 
     return (

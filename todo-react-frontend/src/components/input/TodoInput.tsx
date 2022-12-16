@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './TodoInput.css'
+import {addTodoThunk} from "../../store/thunks";
+import {useAppDispatch} from "../../store/hooks";
 
-type TodoInputProps = {
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  addTodo: Function;
-}
+const TodoInput = () => {
+  const [value, setValue] = useState<string>('');
+  const dispatch = useAppDispatch();
 
-const TodoInput = ({value, setValue, addTodo}: TodoInputProps) => {
+  const addTodo = (value: string) => {
+    dispatch(addTodoThunk(value))
+    setValue('')
+  }
+
     return (
         <div className="input-wrapper">
             <input className="input-body"
@@ -17,7 +21,7 @@ const TodoInput = ({value, setValue, addTodo}: TodoInputProps) => {
                    onChange={(e) => setValue(e.target.value)}
                    onKeyDown={e => {
                        if (e.key === 'Enter') {
-                           addTodo(value)
+                         addTodo(value)
                        }
                    }}
             />

@@ -1,17 +1,15 @@
 import React from 'react';
 import './TodoListFooter.css'
 import {Todo} from "../../types/types";
-import {TodoActionsEnum} from "../../store/actions";
-import {deleteTaskRequest} from "../../API/axios";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
-import {Dispatch} from "@reduxjs/toolkit";
+import {clearCompletedThunk} from "../../store/thunks";
 
 type TodoListFooterProps = {
     setFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TodoListFooter = ({setFilter}: TodoListFooterProps ) => {
-    const dispatch: Dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
     const todos: Todo[] = useAppSelector(state => state.todos);
 
     if (todos.length === 0) {
@@ -19,8 +17,7 @@ const TodoListFooter = ({setFilter}: TodoListFooterProps ) => {
     }
 
     const clearCompleted = () => {
-        dispatch ({type: TodoActionsEnum.CLEAR_COMPLETED});
-        deleteTaskRequest('')
+        dispatch(clearCompletedThunk())
     }
 
     return (
