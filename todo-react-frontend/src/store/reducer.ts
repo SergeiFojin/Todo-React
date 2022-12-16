@@ -18,13 +18,13 @@ const reducer = (state = initialState, action: TodoAction): stateType => {
       const completeTodos: Todo[] = [...state.todos];
       return {
         todos:
-                  completeTodos.map((item) => {
-                    let isCompletedValue: boolean = item.isCompleted;
-                    if (item._id === action.payload) {
-                      isCompletedValue = !item.isCompleted;
-                    }
-                    return { ...item, isCompleted: isCompletedValue };
-                  }),
+          completeTodos.map((item) => {
+            let isCompletedValue: boolean = item.isCompleted;
+            if (item._id === action.payload) {
+              isCompletedValue = !item.isCompleted;
+            }
+            return { ...item, isCompleted: isCompletedValue };
+          }),
       };
 
     case TodoActionsEnum.DELETE_TODO:
@@ -33,12 +33,10 @@ const reducer = (state = initialState, action: TodoAction): stateType => {
     case TodoActionsEnum.COMPLETE_ALL_TODO:
       const completeAllTodos: Todo[] = [...state.todos];
       return {
-        todos: completeAllTodos.map((item) => {
-          return {
-            ...item,
-            isCompleted: completeAllTodos.filter((item) => !item.isCompleted).length !== 0,
-          };
-        }),
+        todos: completeAllTodos.map((item) => ({
+          ...item,
+          isCompleted: completeAllTodos.filter((item) => !item.isCompleted).length !== 0,
+        })),
       };
 
     case TodoActionsEnum.CLEAR_COMPLETED:

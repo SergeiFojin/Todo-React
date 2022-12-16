@@ -1,6 +1,6 @@
 import React from 'react';
 import './TodoListFooter.css';
-import { Todo } from '../../types/types';
+import { Todo, TodoFilterEnum } from '../../types/types';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { clearCompletedThunk } from '../../store/thunks';
 
@@ -30,19 +30,19 @@ const TodoListFooter = ({ setFilter }: TodoListFooterProps) => {
       <div className="todoList-footer-buttons">
         <button
           className="todoList-footer-all footer-button"
-          onClick={() => setFilter('All')}
+          onClick={() => setFilter(TodoFilterEnum.ALL)}
         >
           All
         </button>
         <button
           className="todoList-footer-active footer-button"
-          onClick={() => setFilter('NotCompleted')}
+          onClick={() => setFilter(TodoFilterEnum.NOTCOMPLETED)}
         >
           Active
         </button>
         <button
           className="todoList-footer-completed footer-button"
-          onClick={() => setFilter('Completed')}
+          onClick={() => setFilter(TodoFilterEnum.COMPLETED)}
         >
           Completed
         </button>

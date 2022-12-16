@@ -7,7 +7,7 @@ module.exports = {
     'import/extensions': 0,
     'import/no-unresolved': 0,
     'react/function-component-definition': 0,
-    // 'arrow-body-style': 0,
+    'arrow-body-style': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-curly-brace-presence': 0,
     'no-undef': 0,

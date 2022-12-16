@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './TodoList.css';
 import { useNavigate } from 'react-router-dom';
-import { Todo } from '../../types/types';
+import { Todo, TodoFilterEnum } from '../../types/types';
 import TodoListFooter from '../TodoListFooter/TodoListFooter';
 import TodoListItem from '../TodoListItem/TodoListItem';
 import TodoListCompleteAll from '../TodoListCompleteAll/TodoListCompleteAll';
 import { useAppSelector } from '../../store/hooks';
 
 const TodoList = () => {
-  const [filter, setFilter] = useState<string>('All');
+  const [filter, setFilter] = useState<string>(TodoFilterEnum.ALL);
   const navigate = useNavigate();
   const todos: Todo[] = useAppSelector((state) => state.todos);
 
@@ -25,11 +25,11 @@ const TodoList = () => {
       <TodoListCompleteAll />
       <ul className="todoList-body">
         {todos.filter((todo) => {
-          if (filter === 'All') {
+          if (filter === TodoFilterEnum.ALL) {
             return true;
           }
 
-          if (filter === 'Completed') {
+          if (filter === TodoFilterEnum.COMPLETED) {
             return todo.isCompleted;
           }
 
