@@ -1,26 +1,29 @@
 import React from 'react';
 import { useAppDispatch } from '../../../store/hooks';
-import { completeTodoThunk, deleteTodoThunk } from '../../../store/thunks';
+import { completeTodoSaga, deleteTodoSaga } from '../../../store/sagas/actions';
 
 export const useTodoListItem = () => {
   const dispatch = useAppDispatch();
 
   const completeTodo = (
-    todoId: string,
-    todoIsCompleted: boolean,
+    _id: string,
+    isCompleted: boolean,
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.stopPropagation();
-    dispatch(completeTodoThunk(todoId, todoIsCompleted));
+    dispatch(completeTodoSaga({
+      _id,
+      isCompleted,
+    }));
   };
 
   const deleteTodo = (
-    todoId: string,
+    _id: string,
     e: React.MouseEvent<HTMLButtonElement,
       MouseEvent>,
   ) => {
     e.stopPropagation();
-    dispatch(deleteTodoThunk(todoId));
+    dispatch(deleteTodoSaga(_id));
   };
 
   return {

@@ -1,4 +1,5 @@
 import { Todo } from '../types/types';
+import { TodoActionSaga } from './sagas/actions';
 
 export enum TodoActionsEnum {
   ADD_TODO = 'ADD_TODO',
@@ -33,8 +34,8 @@ type ClearCompletedAction = {
 }
 
 type GetTodosAction = {
-  type: TodoActionsEnum.GET_TODOS
-  payload: Todo[]
+  type: TodoActionsEnum.GET_TODOS;
+  payload: Todo[];
 }
 
 export type TodoAction =
@@ -43,4 +44,5 @@ export type TodoAction =
   DeleteTodoAction |
   CompleteAllTodoAction |
   ClearCompletedAction |
-  GetTodosAction
+  GetTodosAction |
+  TodoActionSaga

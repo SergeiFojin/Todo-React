@@ -1,11 +1,11 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import {
   addTaskRequest, completeTaskRequest, deleteTaskRequest, getTasksRequest,
-} from '../API/axios';
-import { TodoActionsEnum } from './actions';
-import { ErrorLogsEnum } from '../types/errorLogs';
+} from '../../API/axios';
+import { TodoActionsEnum } from '../actions';
+import { ErrorLogsEnum } from '../../types/errorLogs';
 
-export const getTodos = () => {
+export const getTodosThunk = () => {
   return async (dispatch: Dispatch) => {
     try {
       const result = await getTasksRequest();

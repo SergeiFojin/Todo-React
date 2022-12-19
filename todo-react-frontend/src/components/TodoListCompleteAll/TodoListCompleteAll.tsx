@@ -1,8 +1,8 @@
 import React from 'react';
 import './TodoListCompleteAll.css';
-import { Todo } from '../../types/types';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { completeAllTodosThunk } from '../../store/thunks';
+import { completeAllTodoSaga } from '../../store/sagas/actions';
+import { Todo } from '../../types/types';
 
 const TodoListCompleteAll = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +14,7 @@ const TodoListCompleteAll = () => {
 
   const completeAllTodo = () => {
     const completeCheck = todos.length === todos.filter((item) => item.isCompleted).length ? 'false' : 'true';
-    dispatch(completeAllTodosThunk(completeCheck));
+    dispatch(completeAllTodoSaga(completeCheck));
   };
 
   return (
