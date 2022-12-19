@@ -19,7 +19,6 @@ const TodoList = () => {
   const navigateToTodo = (todo: Todo) => {
     navigate(`/todos/${todo._id}/${todo.value}/${todo.isCompleted}`);
   };
-  console.log(todos);
   return (
     <div className="todoList-wrapper">
       <TodoListCompleteAll />

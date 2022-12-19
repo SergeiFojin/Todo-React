@@ -1,17 +1,17 @@
 import { Todo } from '../../types/types';
 
-export type AddTodoField = Omit<Todo, '_id'>;
+export type AddTodoFields = Omit<Todo, '_id'>;
 
-export type CompleteTodoField = Omit<Todo, 'value'>;
+export type CompleteTodoFields = Omit<Todo, 'value'>;
 
 export type AddTodoSaga = {
   type: string;
-  payload: AddTodoField;
+  payload: AddTodoFields;
 }
 
 export type CompleteTodoSaga = {
   type: string;
-  payload: CompleteTodoField;
+  payload: CompleteTodoFields;
 }
 
 export type DeleteTodoSaga = {

@@ -1,4 +1,4 @@
-import { AddTodoField, CompleteTodoField } from './types';
+import { AddTodoFields, CompleteTodoFields } from './types';
 
 export enum TodoActionsEnumSaga {
   GET_TODOS_SAGA = 'GET_TODOS_SAGA',
@@ -15,12 +15,12 @@ type GetTodosActionSaga = {
 
 type AddTodoActionSaga = {
   type: TodoActionsEnumSaga.ADD_TODO_SAGA;
-  payload: AddTodoField;
+  payload: AddTodoFields;
 }
 
 type CompleteTodoActionSaga = {
   type: TodoActionsEnumSaga.COMPLETE_TODO_SAGA;
-  payload: CompleteTodoField;
+  payload: CompleteTodoFields;
 }
 
 type DeleteTodoActionSaga = {
@@ -48,12 +48,12 @@ export type TodoActionSaga =
 
 export const getTodosSaga = (): TodoActionSaga => ({ type: TodoActionsEnumSaga.GET_TODOS_SAGA });
 
-export const addTodoSaga = (todo: AddTodoField): TodoActionSaga => ({
+export const addTodoSaga = (todo: AddTodoFields): TodoActionSaga => ({
   type: TodoActionsEnumSaga.ADD_TODO_SAGA,
   payload: todo,
 });
 
-export const completeTodoSaga = (todo: CompleteTodoField): TodoActionSaga => ({
+export const completeTodoSaga = (todo: CompleteTodoFields): TodoActionSaga => ({
   type: TodoActionsEnumSaga.COMPLETE_TODO_SAGA,
   payload: todo,
 });

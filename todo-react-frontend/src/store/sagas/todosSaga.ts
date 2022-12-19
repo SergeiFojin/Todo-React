@@ -1,5 +1,10 @@
 import { put, takeEvery, call } from 'redux-saga/effects';
-import { addTaskRequest, completeTaskRequest, deleteTaskRequest, getTasksRequest } from '../../API/axios';
+import {
+  addTaskRequest,
+  completeTaskRequest,
+  deleteTaskRequest,
+  getTasksRequest,
+} from '../../API/axios';
 import { TodoActionsEnum } from '../actions';
 import { TodoActionsEnumSaga } from './actions';
 import { Todo } from '../../types/types';
@@ -13,6 +18,7 @@ import {
 
 function* getTodosWorker() {
   const result: Todo[] = yield call(getTasksRequest);
+
   yield put({
     type: TodoActionsEnum.GET_TODOS,
     payload: result,
@@ -21,6 +27,7 @@ function* getTodosWorker() {
 
 export function* addTodoWorker({ payload }: AddTodoSaga) {
   const result: Todo = yield addTaskRequest(payload.value, payload.isCompleted);
+
   yield put({
     type: TodoActionsEnum.ADD_TODO,
     payload: result,
