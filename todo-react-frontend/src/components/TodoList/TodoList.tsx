@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './TodoList.css';
 import { useNavigate } from 'react-router-dom';
-import { Todo, TodoFilterEnum } from '../../types/types';
+import { useAppSelector } from '../../store/hooks';
 import TodoListFooter from '../TodoListFooter/TodoListFooter';
 import TodoListItem from '../TodoListItem/TodoListItem';
 import TodoListCompleteAll from '../TodoListCompleteAll/TodoListCompleteAll';
-import { useAppSelector } from '../../store/hooks';
+import { Todo, TodoFilterEnum } from '../../types/types';
 
 const TodoList = () => {
   const [filter, setFilter] = useState<string>(TodoFilterEnum.ALL);
@@ -19,7 +19,7 @@ const TodoList = () => {
   const navigateToTodo = (todo: Todo) => {
     navigate(`/todos/${todo._id}/${todo.value}/${todo.isCompleted}`);
   };
-
+  console.log(todos);
   return (
     <div className="todoList-wrapper">
       <TodoListCompleteAll />

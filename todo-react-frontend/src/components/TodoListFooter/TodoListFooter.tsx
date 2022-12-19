@@ -1,8 +1,8 @@
 import React from 'react';
 import './TodoListFooter.css';
-import { Todo, TodoFilterEnum } from '../../types/types';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { clearCompletedThunk } from '../../store/thunks';
+import { clearCompletedSaga } from '../../store/sagas/actions';
+import { Todo, TodoFilterEnum } from '../../types/types';
 
 type TodoListFooterProps = {
     setFilter: React.Dispatch<React.SetStateAction<string>>;
@@ -17,7 +17,7 @@ const TodoListFooter = ({ setFilter }: TodoListFooterProps) => {
   }
 
   const clearCompleted = () => {
-    dispatch(clearCompletedThunk());
+    dispatch(clearCompletedSaga(''));
   };
 
   return (

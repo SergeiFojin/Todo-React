@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './TodoInput.css';
-import { addTodoThunk } from '../../store/thunks';
 import { useAppDispatch } from '../../store/hooks';
+import { addTodoSaga } from '../../store/sagas/actions';
 
 const TodoInput = () => {
   const [value, setValue] = useState<string>('');
   const dispatch = useAppDispatch();
 
   const addTodo = (value: string) => {
-    dispatch(addTodoThunk(value));
+    dispatch(addTodoSaga({
+      value,
+      isCompleted: false,
+    }));
     setValue('');
   };
 

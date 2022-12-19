@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
+import { useAppDispatch } from '../store/hooks';
+import { getTodosSaga } from '../store/sagas/actions';
 import TodoInput from '../components/input/TodoInput';
 import TodoList from '../components/TodoList/TodoList';
-import { useAppDispatch } from '../store/hooks';
-import { getTodos } from '../store/thunks';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTodos());
+    dispatch(getTodosSaga());
   }, [dispatch]);
 
   return (

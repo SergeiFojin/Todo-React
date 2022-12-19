@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
+import { completeTodoSaga } from '../../../store/sagas/actions';
 import { Todo } from '../../../types/types';
-import { completeTodoThunk } from '../../../store/thunks';
 
 type TodoPageParams = {
   _id: string;
@@ -17,8 +17,11 @@ export const useTodoPage = () => {
   const initialState = { _id: params._id || '', value: params.value || '', isCompleted: params.isCompleted === 'true' };
   const [todo, setTodo] = useState<Todo>(initialState);
 
-  const completeTodo = (todoId: string, todoIsCompleted: boolean) => {
-    dispatch(completeTodoThunk(todoId, todoIsCompleted));
+  const completeTodo = (_id: string, isCompleted: boolean) => {
+    dispatch(completeTodoSaga({
+      _id,
+      isCompleted,
+    }));
     setTodo({ ...todo, isCompleted: !todo.isCompleted });
   };
 
