@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { colors } from '../../colors';
 
 export const Body = styled.div`
-  width: 550px;
+  width: 50%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -11,6 +12,6 @@ export const Body = styled.div`
 export const Header = styled.div`
   font-size: 100px;
   line-height: 102px;
-  color: #e1cbce;
+  color: ${colors.headerColor};
   font-family: Arial;
 `;

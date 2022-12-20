@@ -4,7 +4,6 @@ import { useAppSelector } from '../../store/hooks';
 import * as S from './TodoListStyles';
 import TodoListFooter from '../TodoListFooter/TodoListFooter';
 import TodoListItem from '../TodoListItem/TodoListItem';
-import TodoListCompleteAll from '../TodoListCompleteAll/TodoListCompleteAll';
 import { Todo, TodoFilterEnum } from '../../types/types';
 
 const TodoList = () => {
@@ -21,7 +20,6 @@ const TodoList = () => {
   };
   return (
     <S.TodoListWrap>
-      <TodoListCompleteAll />
       <S.TodoList>
         {todos.filter((todo) => {
           if (filter === TodoFilterEnum.ALL) {

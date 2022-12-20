@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { colors } from './colors';
 
 export const Global = createGlobalStyle`
   *,
@@ -12,6 +13,6 @@ export const Global = createGlobalStyle`
   body {
     min-height: 100%;
     padding: 40px;
-    background-color: whitesmoke;
+    background-color: ${colors.whitesmoke};
   }
 `;
