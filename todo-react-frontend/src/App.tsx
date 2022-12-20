@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
+import { Global } from './global';
+import HomePage from './pages/Homepage/HomePage';
 import TodoPage from './pages/TodoPage/TodoPage';
 
 const App = () => (
@@ -10,6 +10,7 @@ const App = () => (
       <Route path={'/'} element={<HomePage />} />
       <Route path={'/todos/:_id/:value/:isCompleted'} element={<TodoPage />} />
     </Routes>
+    <Global />
   </BrowserRouter>
 );
 

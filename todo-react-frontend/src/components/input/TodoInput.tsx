@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './TodoInput.css';
 import { useAppDispatch } from '../../store/hooks';
+import * as S from './TodoInputStyles';
 import { addTodoSaga } from '../../store/sagas/actions';
+import TodoListCompleteAll from '../TodoListCompleteAll/TodoListCompleteAll';
 
 const TodoInput = () => {
   const [value, setValue] = useState<string>('');
@@ -16,9 +17,9 @@ const TodoInput = () => {
   };
 
   return (
-    <div className="input-wrapper">
-      <input
-        className="input-body"
+    <S.InputWrap>
+      <TodoListCompleteAll />
+      <S.InputBody
         type="text"
         value={value}
         placeholder="What needs to be done?"
@@ -29,7 +30,7 @@ const TodoInput = () => {
           }
         }}
       />
-    </div>
+    </S.InputWrap>
   );
 };
 

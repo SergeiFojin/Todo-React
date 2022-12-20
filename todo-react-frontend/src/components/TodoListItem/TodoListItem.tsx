@@ -1,5 +1,5 @@
 import React from 'react';
-import './TodoListItem.css';
+import * as S from '../../pages/TodoPage/Todopage';
 import { Todo } from '../../types/types';
 import { useTodoListItem } from './hooks/useTodoListItem';
 
@@ -12,22 +12,20 @@ const TodoListItem = ({ todo, onClick }: TodoListItemProps) => {
   const { completeTodo, deleteTodo } = useTodoListItem();
 
   return (
-    <div className="todoList-item" id={todo._id} onClick={() => onClick()}>
-      <button className="todoList-item-complete" onClick={(e) => completeTodo(todo._id, todo.isCompleted, e)}>
-        {todo.isCompleted && (
-          <img className="todoList-item-complete-img" src="./source/checkmark.png" alt="checkmark.png" />
-        )}
-      </button>
-      <input
-        className={todo.isCompleted ? 'todoList-item-input completed' : 'todoList-item-input'}
+    <S.Todo onClick={() => onClick()}>
+      <S.TodoComplete onClick={(e) => completeTodo(todo._id, todo.isCompleted, e)}>
+        <S.TodoCompleteImg isCompleted={todo.isCompleted} src="/source/checkmark.png" alt="checkmark.png" />
+      </S.TodoComplete>
+      <S.TodoInput
         type="text"
         value={todo.value}
         disabled
+        isCompleted={todo.isCompleted}
       />
-      <button className="todoList-item-delete" onClick={(e) => deleteTodo(todo._id, e)}>
-        <img className="todoList-item-delete-img" src="./source/remove.png" alt="remove.png" />
-      </button>
-    </div>
+      <S.TodoBack onClick={(e) => deleteTodo(todo._id, e)}>
+        <S.TodoDeleteImg src="/source/remove.png" alt="remove.png" />
+      </S.TodoBack>
+    </S.Todo>
   );
 };
 
