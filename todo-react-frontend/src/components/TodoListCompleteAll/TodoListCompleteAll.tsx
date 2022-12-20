@@ -1,6 +1,6 @@
 import React from 'react';
-import './TodoListCompleteAll.css';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import * as S from './TodoListCompleteAllStyles';
 import { completeAllTodoSaga } from '../../store/sagas/actions';
 import { Todo } from '../../types/types';
 
@@ -18,18 +18,15 @@ const TodoListCompleteAll = () => {
   };
 
   return (
-    <button
-      className={todos.filter((item) => !item.isCompleted).length
-        ? 'todoList-complete-all'
-        : 'todoList-complete-all active'}
+    <S.TodoListCompleteAll
+      checkComplete={todos.filter((item) => !item.isCompleted).length}
       onClick={completeAllTodo}
     >
-      <img
-        className="todoList-complete-all-img"
+      <S.TodoListCompleteAllImg
         src="./source/checkAll.png"
         alt="checkAll.png"
       />
-    </button>
+    </S.TodoListCompleteAll>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './TodoListFooter.css';
+import * as S from './TodoListFooterStyles';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { clearCompletedSaga } from '../../store/sagas/actions';
 import { Todo, TodoFilterEnum } from '../../types/types';
@@ -21,42 +21,30 @@ const TodoListFooter = ({ setFilter }: TodoListFooterProps) => {
   };
 
   return (
-    <div className="todoList-footer">
-      <p className="todoList-footer-left">
+    <S.TodoListFooter>
+      <S.TodoListFooterLeft>
         {todos.length}
         {' '}
         item left
-      </p>
-      <div className="todoList-footer-buttons">
-        <button
-          className="todoList-footer-all footer-button"
-          onClick={() => setFilter(TodoFilterEnum.ALL)}
-        >
+      </S.TodoListFooterLeft>
+      <S.TodoListFooterButtons>
+        <S.TodoListFooterButton onClick={() => setFilter(TodoFilterEnum.ALL)}>
           All
-        </button>
-        <button
-          className="todoList-footer-active footer-button"
-          onClick={() => setFilter(TodoFilterEnum.NOTCOMPLETED)}
-        >
+        </S.TodoListFooterButton>
+        <S.TodoListFooterButton onClick={() => setFilter(TodoFilterEnum.NOTCOMPLETED)}>
           Active
-        </button>
-        <button
-          className="todoList-footer-completed footer-button"
-          onClick={() => setFilter(TodoFilterEnum.COMPLETED)}
-        >
+        </S.TodoListFooterButton>
+        <S.TodoListFooterButton onClick={() => setFilter(TodoFilterEnum.COMPLETED)}>
           Completed
-        </button>
-      </div>
-      {todos.findIndex((item) => item.isCompleted) !== -1
-                && (
-                <button
-                  className="todoList-footer-clear footer-button"
-                  onClick={clearCompleted}
-                >
-                  Clear completed
-                </button>
-                )}
-    </div>
+        </S.TodoListFooterButton>
+      </S.TodoListFooterButtons>
+      <S.TodoListFooterClear
+        checkCompleted={todos.findIndex((item) => item.isCompleted) !== -1}
+        onClick={clearCompleted}
+      >
+        Clear completed
+      </S.TodoListFooterClear>
+    </S.TodoListFooter>
   );
 };
 
