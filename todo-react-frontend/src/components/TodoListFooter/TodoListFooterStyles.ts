@@ -6,6 +6,8 @@ export const TodoListFooter = styled.div`
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+  
+  .notVisible{display: none};
 `;
 
 export const TodoListFooterLeft = styled.p`
@@ -45,8 +47,7 @@ export const TodoListFooterButton = styled.button`
   }
 `;
 
-export const TodoListFooterClear = styled(TodoListFooterButton)<{checkCompleted: boolean}>`
-  display: ${(props) => (props.checkCompleted ? 'inline-flex' : 'none')};
+export const TodoListFooterClear = styled(TodoListFooterButton)`
   justify-self: end;
   &:hover {
     border: 1px solid ${colors.white};
