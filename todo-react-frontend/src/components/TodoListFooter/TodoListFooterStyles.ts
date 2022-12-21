@@ -1,11 +1,15 @@
-import styled from 'styled-components';
-import { colors } from '../../colors';
+import styled from "styled-components";
+import { colors } from "../../colors";
 
 export const TodoListFooter = styled.div`
   width: 100%;
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+
+  .notVisible {
+    display: none;
+  }
 `;
 
 export const TodoListFooterLeft = styled.p`
@@ -27,17 +31,17 @@ export const TodoListFooterButton = styled.button`
   color: ${colors.dimgray};
   font-family: Arial;
   cursor: pointer;
-  
+
   &:not(:first-child) {
     margin-left: 10px;
   }
-  
+
   &:hover {
     border: 1px solid ${colors.footerButtonHover};
     border-radius: 3px;
     padding: 4px 9px;
   }
-  
+
   &:focus {
     border: 1px solid ${colors.footerButtonFocus};
     border-radius: 3px;
@@ -45,8 +49,7 @@ export const TodoListFooterButton = styled.button`
   }
 `;
 
-export const TodoListFooterClear = styled(TodoListFooterButton)<{checkCompleted: boolean}>`
-  display: ${(props) => (props.checkCompleted ? 'inline-flex' : 'none')};
+export const TodoListFooterClear = styled(TodoListFooterButton)`
   justify-self: end;
   &:hover {
     border: 1px solid ${colors.white};

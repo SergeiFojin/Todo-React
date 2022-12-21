@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { colors } from '../../colors';
+import styled from "styled-components";
+import { colors } from "../../colors";
 
 export const Body = styled.div`
   width: 50%;
@@ -24,6 +24,11 @@ export const Todo = styled.div`
   padding: 16px;
   border: 1px solid ${colors.whitesmoke};
   background-color: ${colors.white};
+
+  .completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
 `;
 
 export const TodoComplete = styled.button`
@@ -33,17 +38,20 @@ export const TodoComplete = styled.button`
   border: 1px solid ${colors.lightgray};
   background-color: ${colors.white};
   box-sizing: border-box;
+
+  .notCompleted {
+    opacity: 0;
+  }
 `;
 
-export const TodoCompleteImg = styled.img<{isCompleted: boolean}>`
+export const TodoCompleteImg = styled.img`
   width: 100%;
   border-radius: 50%;
   padding: 5px;
   border: 1px solid ${colors.green};
-  opacity: ${(props) => (props.isCompleted ? '1' : '0')};
 `;
 
-export const TodoInput = styled.input<{isCompleted: boolean}>`
+export const TodoInput = styled.input`
   width: 100%;
   font-size: 24px;
   font-weight: 100;
@@ -52,8 +60,6 @@ export const TodoInput = styled.input<{isCompleted: boolean}>`
   border: none;
   outline: none;
   margin-left: 20px;
-  text-decoration: ${(props) => (props.isCompleted ? 'line-through' : 'none')};
-  opacity: ${(props) => (props.isCompleted ? '0.5' : '1')};
 `;
 
 export const TodoBack = styled.button`
@@ -68,7 +74,7 @@ export const TodoBack = styled.button`
 export const TodoBackImg = styled.img`
   width: 25px;
   opacity: 0.3;
-  
+
   &:hover {
     opacity: 0.5;
   }
@@ -77,7 +83,7 @@ export const TodoBackImg = styled.img`
 export const TodoDeleteImg = styled.img`
   width: 15px;
   opacity: 0.3;
-  
+
   &:hover {
     opacity: 0.7;
   }

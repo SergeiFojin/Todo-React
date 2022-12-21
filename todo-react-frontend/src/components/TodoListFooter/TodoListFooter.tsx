@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import * as S from './TodoListFooterStyles';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { clearCompletedSaga } from '../../store/sagas/actions';
@@ -39,7 +40,7 @@ const TodoListFooter = ({ setFilter }: TodoListFooterProps) => {
         </S.TodoListFooterButton>
       </S.TodoListFooterButtons>
       <S.TodoListFooterClear
-        checkCompleted={todos.findIndex((item) => item.isCompleted) !== -1}
+        className={cn({ notVisible: todos.findIndex((item) => item.isCompleted) === -1 })}
         onClick={clearCompleted}
       >
         Clear completed
