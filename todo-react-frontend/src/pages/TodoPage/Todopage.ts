@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { colors } from '../../colors';
+import styled from "styled-components";
+import { colors } from "../../colors";
 
 export const Body = styled.div`
   width: 50%;
@@ -28,7 +28,7 @@ export const Todo = styled.div`
   .completed {
     opacity: 0.5;
     text-decoration: line-through;
-  };
+  }
 `;
 
 export const TodoComplete = styled.button`
@@ -38,8 +38,10 @@ export const TodoComplete = styled.button`
   border: 1px solid ${colors.lightgray};
   background-color: ${colors.white};
   box-sizing: border-box;
-  
-  .notCompleted {opacity: 0};
+
+  .notCompleted {
+    opacity: 0;
+  }
 `;
 
 export const TodoCompleteImg = styled.img`
@@ -72,7 +74,7 @@ export const TodoBack = styled.button`
 export const TodoBackImg = styled.img`
   width: 25px;
   opacity: 0.3;
-  
+
   &:hover {
     opacity: 0.5;
   }
@@ -81,7 +83,7 @@ export const TodoBackImg = styled.img`
 export const TodoDeleteImg = styled.img`
   width: 15px;
   opacity: 0.3;
-  
+
   &:hover {
     opacity: 0.7;
   }

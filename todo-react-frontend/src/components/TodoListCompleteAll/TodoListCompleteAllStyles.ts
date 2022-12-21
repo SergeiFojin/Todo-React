@@ -1,11 +1,13 @@
-import styled from 'styled-components';
-import { colors } from '../../colors';
+import styled from "styled-components";
+import { colors } from "../../colors";
 
 export const TodoListCompleteWrap = styled.div`
   display: flex;
   align-items: center;
-  
-  .allCompleted{opacity: 0.6};
+
+  .allCompleted {
+    opacity: 0.6;
+  }
 `;
 
 export const TodoListCompleteAll = styled.button`
