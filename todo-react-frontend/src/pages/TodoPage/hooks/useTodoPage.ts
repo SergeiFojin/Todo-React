@@ -14,7 +14,11 @@ export const useTodoPage = () => {
   const dispatch = useAppDispatch();
   const params = useParams<TodoPageParams>();
   const navigate = useNavigate();
-  const initialState = { _id: params._id || '', value: params.value || '', isCompleted: params.isCompleted === 'true' };
+  const initialState = {
+    _id: params._id || '',
+    value: params.value || '',
+    isCompleted: params.isCompleted === 'true',
+  };
   const [todo, setTodo] = useState<Todo>(initialState);
 
   const completeTodo = (_id: string, isCompleted: boolean) => {

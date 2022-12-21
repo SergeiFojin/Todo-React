@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../colors";
+import styled from 'styled-components';
+import { colors } from '../../colors';
 
 export const Body = styled.div`
   width: 50%;
