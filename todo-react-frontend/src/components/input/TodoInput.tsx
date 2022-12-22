@@ -4,7 +4,7 @@ import TodoListCompleteAll from '../TodoListCompleteAll/TodoListCompleteAll';
 import { useTodoInput } from './hooks/useTodoInput';
 
 const TodoInput = () => {
-  const { value, setValue, debounceHandle } = useTodoInput();
+  const { value, debouncedValue, setValueHandler, addTodo } = useTodoInput();
 
   return (
     <S.InputWrap>
@@ -13,10 +13,10 @@ const TodoInput = () => {
         type="text"
         value={value}
         placeholder="What needs to be done?"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValueHandler(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            debounceHandle(value);
+            addTodo(debouncedValue);
           }
         }}
       />
