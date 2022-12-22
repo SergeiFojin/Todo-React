@@ -14,6 +14,7 @@ export const Header = styled.div`
   line-height: 102px;
   color: ${colors.headerColor};
   font-family: Arial;
+  text-align: center;
 `;
 
 export const Todo = styled.div`

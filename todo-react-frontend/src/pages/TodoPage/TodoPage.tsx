@@ -1,14 +1,18 @@
 import React from 'react';
 import cn from 'classnames';
+import { useTranslation } from 'react-i18next';
 import * as S from './Todopage';
 import { useTodoPage } from './hooks/useTodoPage';
+import LanguageSwitcher from '../../components/LanguageSwitcher/LanguageSwitcher';
 
 const TodoPage = () => {
   const { todo, completeTodo, navigateToMain } = useTodoPage();
+  const { t } = useTranslation();
 
   return (
     <S.Body>
-      <S.Header>todos</S.Header>
+      <LanguageSwitcher />
+      <S.Header>{t('header')}</S.Header>
       <S.Todo>
         <S.TodoComplete onClick={() => completeTodo(todo._id, todo.isCompleted)}>
           <S.TodoCompleteImg
