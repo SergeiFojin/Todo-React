@@ -5,7 +5,7 @@ import TodoListCompleteAll from '../TodoListCompleteAll/TodoListCompleteAll';
 import { useTodoInput } from './hooks/useTodoInput';
 
 const TodoInput = () => {
-  const { value, debouncedValue, setValueHandler, addTodo } = useTodoInput();
+  const { value, setValueHandler, addTodoHandler } = useTodoInput();
   const { t } = useTranslation();
 
   return (
@@ -18,7 +18,7 @@ const TodoInput = () => {
         onChange={(e) => setValueHandler(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            addTodo(debouncedValue);
+            addTodoHandler(value);
           }
         }}
       />

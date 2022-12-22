@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import _debounce from 'lodash/debounce';
 import { useAppDispatch } from '../../../store/hooks';
 import { addTodoSaga } from '../../../store/sagas/actions';
-import { useDebounce } from './useDebounce';
 
 export const useTodoInput = () => {
   const [value, setValue] = useState<string>('');
   const dispatch = useAppDispatch();
 
-  const debouncedValue = useDebounce(value, 500);
+  const debounceFunction = (value: string) => {
+    console.log(value);
+    return value;
+  };
+
+  const debounceHandle = useCallback(_debounce((value) => debounceFunction(value), 500), []);
 
   const setValueHandler = (value: string) => {
     setValue(value);
+    debounceHandle(value);
   };
 
   const addTodo = (value: string) => {
@@ -26,10 +32,11 @@ export const useTodoInput = () => {
     setValue('');
   };
 
+  const addTodoHandler = useCallback(_debounce((value) => addTodo(value), 500), []);
+
   return {
     value,
-    debouncedValue,
-    addTodo,
     setValueHandler,
+    addTodoHandler,
   };
 };
