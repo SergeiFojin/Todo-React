@@ -9,3 +9,9 @@ export enum TodoFilterEnum {
   COMPLETED = 'Completed',
   NOTCOMPLETED = 'NotCompleted',
 }
+
+export type languagesType = {
+  en: {nativeName: string};
+  ru: {nativeName: string};
+  [lng: string]: {nativeName: string};
+}

@@ -1,0 +1,9 @@
+{
+  "header": "todos",
+  "placeholder": "What needs to be done?",
+  "leftTodos": "todos left: ",
+  "buttonAll": "All",
+  "buttonActive": "Active",
+  "buttonCompleted": "Completed",
+  "buttonClearCompleted": "Clear completed"
+}

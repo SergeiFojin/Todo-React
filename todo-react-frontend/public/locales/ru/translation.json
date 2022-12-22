@@ -1,0 +1,9 @@
+{
+  "header": "Список задач",
+  "placeholder": "Что нужно сделать?",
+  "leftTodos": "задач осталось: ",
+  "buttonAll": "Все",
+  "buttonActive": "Активные",
+  "buttonCompleted": "Выполненные",
+  "buttonClearCompleted": "Очистить выполненные"
+}
