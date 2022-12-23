@@ -2,13 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './sagas';
 import todoReducer from './todoReducer/todoReducer';
-import fetchReducer from './fetchReducer/fetchReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   todoReducer,
-  fetchReducer,
 });
 
 export const store = configureStore(

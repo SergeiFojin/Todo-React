@@ -2,12 +2,28 @@ import { Todo } from '../../types/types';
 import { TodoActionSaga } from '../sagas/actions';
 
 export enum TodoActionsEnum {
+  LOADING_TODO = 'LOADING_TODO',
+  ADDING_TODO = 'ADDING_TODO',
+  ERROR_TODO = 'ERROR_TODO',
   ADD_TODO = 'ADD_TODO',
   COMPLETE_TODO = 'COMPLETE_TODO',
   DELETE_TODO = 'DELETE_TODO',
   COMPLETE_ALL_TODO = 'COMPLETE_ALL_TODO',
   CLEAR_COMPLETED = 'CLEAR_COMPLETED',
   GET_TODOS = 'GET_TODOS',
+}
+
+type LoadingTodoAction = {
+  type: TodoActionsEnum.LOADING_TODO;
+}
+
+type AddingTodoAction = {
+  type: TodoActionsEnum.ADDING_TODO;
+}
+
+type ErrorTodoAction = {
+  type: TodoActionsEnum.ERROR_TODO;
+  payload: string;
 }
 
 type AddTodoAction = {
@@ -39,6 +55,9 @@ type GetTodosAction = {
 }
 
 export type TodoAction =
+  LoadingTodoAction |
+  AddingTodoAction |
+  ErrorTodoAction |
   AddTodoAction |
   CompleteTodoAction |
   DeleteTodoAction |

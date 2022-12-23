@@ -7,7 +7,7 @@ import { FetchStatusEnum } from '../../types/types';
 import * as C from '../Loader/LoaderStyles';
 
 const TodoInput = () => {
-  const { value, setValueHandler, addTodoHandler, isLoading } = useTodoInput();
+  const { value, setValueHandler, addTodoHandler, fetchStatus } = useTodoInput();
   const { t } = useTranslation();
 
   return (
@@ -26,7 +26,7 @@ const TodoInput = () => {
       />
       <S.AddButtonWrap>
         {
-          isLoading === FetchStatusEnum.ADDLOADING
+          fetchStatus === FetchStatusEnum.ADD_LOADING
             ? <C.AddLoader />
             : (
               <S.AddButton onClick={() => addTodoHandler(value)}>

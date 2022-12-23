@@ -18,7 +18,7 @@ export type languagesType = {
 
 export enum FetchStatusEnum {
   LOADING = 'LOADING',
-  ADDLOADING = 'ADDLOADING',
+  ADD_LOADING = 'ADD_LOADING',
   ERROR = 'ERROR',
   SUCCESS = 'SUCCESS',
 }

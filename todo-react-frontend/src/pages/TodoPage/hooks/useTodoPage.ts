@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { useAppDispatch } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { completeTodoSaga } from '../../../store/sagas/actions';
 import { Todo } from '../../../types/types';
 
@@ -14,6 +14,7 @@ export const useTodoPage = () => {
   const dispatch = useAppDispatch();
   const params = useParams<TodoPageParams>();
   const navigate = useNavigate();
+  const fetchStatus: string = useAppSelector((state) => state.todoReducer.requestStatus);
   const initialState = {
     _id: params._id || '',
     value: params.value || '',
@@ -37,5 +38,6 @@ export const useTodoPage = () => {
     todo,
     completeTodo,
     navigateToMain,
+    fetchStatus,
   };
 };

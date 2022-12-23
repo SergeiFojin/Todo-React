@@ -1,4 +1,5 @@
 import { put, takeEvery, call } from 'redux-saga/effects';
+import { AxiosError } from 'axios';
 import {
   addTaskRequest,
   completeTaskRequest,
@@ -15,79 +16,106 @@ import {
   CompleteTodoSaga,
   DeleteTodoSaga,
 } from './types';
-import { FetchActionsEnum } from '../fetchReducer/fetchActions';
 import { ErrorLogsEnum } from '../../types/errorLogs';
 
 function* getTodosWorker() {
-  yield put({
-    type: FetchActionsEnum.LOADING_FETCH,
-  });
-  const result: Todo[] = yield call(getTasksRequest);
-  if (typeof result === 'string') {
+  try {
     yield put({
-      type: FetchActionsEnum.ERROR_FETCH,
-      payload: `${ErrorLogsEnum.GET_TODOS_ERROR} ${result}`,
+      type: TodoActionsEnum.LOADING_TODO,
     });
-  } else {
-    yield put({
-      type: FetchActionsEnum.SUCCESS_FETCH,
-    });
+    const result: Todo[] = yield call(getTasksRequest);
     yield put({
       type: TodoActionsEnum.GET_TODOS,
       payload: result,
+    });
+  } catch (e) {
+    const err = e as AxiosError;
+    yield put({
+      type: TodoActionsEnum.ERROR_TODO,
+      payload: `${ErrorLogsEnum.GET_TODOS_ERROR} ${err.message}`,
     });
   }
 }
 
 export function* addTodoWorker({ payload }: AddTodoSaga) {
-  yield put({
-    type: FetchActionsEnum.ADD_LOADING_FETCH,
-  });
-  const result: Todo = yield addTaskRequest(payload.value, payload.isCompleted);
-  if (typeof result === 'string') {
+  try {
     yield put({
-      type: FetchActionsEnum.ERROR_FETCH,
-      payload: `${ErrorLogsEnum.ADD_TODO_ERROR} ${result}`,
+      type: TodoActionsEnum.ADDING_TODO,
     });
-  } else {
-    yield put({
-      type: FetchActionsEnum.SUCCESS_FETCH,
-    });
+    const result: Todo[] = yield addTaskRequest(payload.value, payload.isCompleted);
     yield put({
       type: TodoActionsEnum.ADD_TODO,
       payload: result,
+    });
+  } catch (e) {
+    const err = e as AxiosError;
+    yield put({
+      type: TodoActionsEnum.ERROR_TODO,
+      payload: `${ErrorLogsEnum.ADD_TODO_ERROR} ${err.message}`,
     });
   }
 }
 
 export function* completeTodoWorker({ payload }: CompleteTodoSaga) {
-  yield completeTaskRequest(payload._id, payload.isCompleted);
-  yield put({
-    type: TodoActionsEnum.COMPLETE_TODO,
-    payload: payload._id,
-  });
+  try {
+    yield completeTaskRequest(payload._id, payload.isCompleted);
+    yield put({
+      type: TodoActionsEnum.COMPLETE_TODO,
+      payload: payload._id,
+    });
+  } catch (e) {
+    const err = e as AxiosError;
+    yield put({
+      type: TodoActionsEnum.ERROR_TODO,
+      payload: `${ErrorLogsEnum.COMPLETE_TODO_ERROR} ${err.message}`,
+    });
+  }
 }
 
 export function* deleteTodoWorker({ payload }: DeleteTodoSaga) {
-  yield deleteTaskRequest(payload);
-  yield put({
-    type: TodoActionsEnum.DELETE_TODO,
-    payload,
-  });
+  try {
+    yield deleteTaskRequest(payload);
+    yield put({
+      type: TodoActionsEnum.DELETE_TODO,
+      payload,
+    });
+  } catch (e) {
+    const err = e as AxiosError;
+    yield put({
+      type: TodoActionsEnum.ERROR_TODO,
+      payload: `${ErrorLogsEnum.DELETE_TODO_ERROR} ${err.message}`,
+    });
+  }
 }
 
 export function* completeAllTodoWorker({ payload }: CompleteAllTodoSaga) {
-  yield completeTaskRequest(payload, true);
-  yield put({
-    type: TodoActionsEnum.COMPLETE_ALL_TODO,
-  });
+  try {
+    yield completeTaskRequest(payload, true);
+    yield put({
+      type: TodoActionsEnum.COMPLETE_ALL_TODO,
+    });
+  } catch (e) {
+    const err = e as AxiosError;
+    yield put({
+      type: TodoActionsEnum.ERROR_TODO,
+      payload: `${ErrorLogsEnum.COMPLETE_ALL_TODO_ERROR} ${err.message}`,
+    });
+  }
 }
 
 export function* clearCompletedWorker({ payload }: ClearCompletedSaga) {
-  yield deleteTaskRequest(payload);
-  yield put({
-    type: TodoActionsEnum.CLEAR_COMPLETED,
-  });
+  try {
+    yield deleteTaskRequest(payload);
+    yield put({
+      type: TodoActionsEnum.CLEAR_COMPLETED,
+    });
+  } catch (e) {
+    const err = e as AxiosError;
+    yield put({
+      type: TodoActionsEnum.ERROR_TODO,
+      payload: `${ErrorLogsEnum.CLEAR_COMPLETED_ERROR} ${err.message}`,
+    });
+  }
 }
 
 export function* todosSaga() {

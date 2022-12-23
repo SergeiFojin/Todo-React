@@ -5,7 +5,7 @@ import { addTodoSaga } from '../../../store/sagas/actions';
 
 export const useTodoInput = () => {
   const [value, setValue] = useState<string>('');
-  const isLoading: string = useAppSelector((state) => state.fetchReducer.status);
+  const fetchStatus: string = useAppSelector((state) => state.todoReducer.requestStatus);
   const dispatch = useAppDispatch();
 
   const debounceFunction = (value: string) => {
@@ -38,6 +38,6 @@ export const useTodoInput = () => {
     value,
     setValueHandler,
     addTodoHandler,
-    isLoading,
+    fetchStatus,
   };
 };

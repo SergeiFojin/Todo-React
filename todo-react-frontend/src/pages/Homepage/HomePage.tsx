@@ -8,10 +8,11 @@ import TodoList from '../../components/TodoList/TodoList';
 import LanguageSwitcher from '../../components/LanguageSwitcher/LanguageSwitcher';
 import Loader from '../../components/Loader/Loader';
 import { FetchStatusEnum } from '../../types/types';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const isLoading: string = useAppSelector((state) => state.fetchReducer.status);
+  const fetchStatus: string = useAppSelector((state) => state.todoReducer.requestStatus);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -24,7 +25,11 @@ const HomePage = () => {
       <S.Header>{t('header')}</S.Header>
       <TodoInput />
       {
-        isLoading === FetchStatusEnum.LOADING
+        fetchStatus === FetchStatusEnum.ERROR
+        && <ErrorMessage />
+      }
+      {
+        fetchStatus === FetchStatusEnum.LOADING
           ? <Loader />
           : <TodoList />
       }

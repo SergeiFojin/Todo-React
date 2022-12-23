@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next';
 import * as S from './Todopage';
 import { useTodoPage } from './hooks/useTodoPage';
 import LanguageSwitcher from '../../components/LanguageSwitcher/LanguageSwitcher';
+import { FetchStatusEnum } from '../../types/types';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 const TodoPage = () => {
-  const { todo, completeTodo, navigateToMain } = useTodoPage();
+  const { todo, completeTodo, navigateToMain, fetchStatus } = useTodoPage();
   const { t } = useTranslation();
 
   return (
@@ -31,6 +33,10 @@ const TodoPage = () => {
           <S.TodoBackImg src="/source/back.png" alt="back.png" />
         </S.TodoBack>
       </S.Todo>
+      {
+        fetchStatus === FetchStatusEnum.ERROR
+        && <ErrorMessage />
+      }
     </S.Body>
   );
 };
