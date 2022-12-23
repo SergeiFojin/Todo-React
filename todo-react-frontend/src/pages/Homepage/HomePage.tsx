@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as S from './Homepage';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getTodosSaga } from '../../store/sagas/actions';
 import TodoInput from '../../components/input/TodoInput';
 import TodoList from '../../components/TodoList/TodoList';
 import LanguageSwitcher from '../../components/LanguageSwitcher/LanguageSwitcher';
+import Loader from '../../components/Loader/Loader';
+import { FetchStatusEnum } from '../../types/types';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
+  const isLoading: string = useAppSelector((state) => state.fetchReducer.status);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -20,7 +23,11 @@ const HomePage = () => {
       <LanguageSwitcher />
       <S.Header>{t('header')}</S.Header>
       <TodoInput />
-      <TodoList />
+      {
+        isLoading === FetchStatusEnum.LOADING
+          ? <Loader />
+          : <TodoList />
+      }
     </S.Body>
   );
 };

@@ -1,5 +1,5 @@
-import { Todo } from '../types/types';
-import { TodoAction, TodoActionsEnum } from './actions';
+import { Todo } from '../../types/types';
+import { TodoAction, TodoActionsEnum } from './todoActions';
 
 type stateType = {
     todos: Todo[];
@@ -9,7 +9,7 @@ const initialState: stateType = {
   todos: [],
 };
 
-const reducer = (state = initialState, action: TodoAction): stateType => {
+const todoReducer = (state = initialState, action: TodoAction): stateType => {
   switch (action.type) {
     case TodoActionsEnum.ADD_TODO:
       return { todos: [...state.todos, action.payload] };
@@ -50,4 +50,4 @@ const reducer = (state = initialState, action: TodoAction): stateType => {
   }
 };
 
-export default reducer;
+export default todoReducer;

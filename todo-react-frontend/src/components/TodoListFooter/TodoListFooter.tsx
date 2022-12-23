@@ -13,7 +13,7 @@ type TodoListFooterProps = {
 const TodoListFooter = ({ setFilter }: TodoListFooterProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const todos: Todo[] = useAppSelector((state) => state.todos);
+  const todos: Todo[] = useAppSelector((state) => state.todoReducer.todos);
 
   if (todos.length === 0) {
     return null;

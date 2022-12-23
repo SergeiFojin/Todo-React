@@ -2,7 +2,7 @@ import { Dispatch } from '@reduxjs/toolkit';
 import {
   addTaskRequest, completeTaskRequest, deleteTaskRequest, getTasksRequest,
 } from '../../API/axios';
-import { TodoActionsEnum } from '../actions';
+import { TodoActionsEnum } from '../todoReducer/todoActions';
 import { ErrorLogsEnum } from '../../types/errorLogs';
 
 export const getTodosThunk = () => {

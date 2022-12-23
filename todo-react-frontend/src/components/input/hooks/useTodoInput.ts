@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react';
 import _debounce from 'lodash/debounce';
-import { useAppDispatch } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { addTodoSaga } from '../../../store/sagas/actions';
 
 export const useTodoInput = () => {
   const [value, setValue] = useState<string>('');
+  const isLoading: string = useAppSelector((state) => state.fetchReducer.status);
   const dispatch = useAppDispatch();
 
   const debounceFunction = (value: string) => {
-    console.log(value);
     return value;
   };
 
@@ -38,5 +38,6 @@ export const useTodoInput = () => {
     value,
     setValueHandler,
     addTodoHandler,
+    isLoading,
   };
 };

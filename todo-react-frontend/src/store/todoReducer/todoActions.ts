@@ -1,5 +1,5 @@
-import { Todo } from '../types/types';
-import { TodoActionSaga } from './sagas/actions';
+import { Todo } from '../../types/types';
+import { TodoActionSaga } from '../sagas/actions';
 
 export enum TodoActionsEnum {
   ADD_TODO = 'ADD_TODO',

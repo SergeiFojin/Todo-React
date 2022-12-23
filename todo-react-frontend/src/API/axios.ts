@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { ErrorLogsEnum } from '../types/errorLogs';
+import axios, { AxiosError } from 'axios';
 
 export async function getTasksRequest() {
   try {
     const response = await axios.get(`${process.env.REACT_APP_LOCALHOST_URL}/api/`);
     return response.data;
   } catch (e) {
-    console.log(ErrorLogsEnum.GET_TODOS_ERROR, e);
+    const err = e as AxiosError;
+    return (err.message);
   }
 }
 
@@ -18,7 +18,8 @@ export async function addTaskRequest(value: string, isCompleted: boolean) {
     });
     return response.data;
   } catch (e) {
-    console.log(ErrorLogsEnum.ADD_TODO_ERROR, e);
+    const err = e as AxiosError;
+    return (err.message);
   }
 }
 
@@ -28,9 +29,11 @@ export async function completeTaskRequest(id: string, isCompleted: boolean) {
       id,
       isCompleted,
     });
+    console.log(response.data);
     return response.data;
   } catch (e) {
-    console.log(ErrorLogsEnum.COMPLETE_TODO_ERROR, e);
+    const err = e as AxiosError;
+    return (err.message);
   }
 }
 
@@ -39,6 +42,7 @@ export async function deleteTaskRequest(id: string) {
     const response = await axios.delete(`${process.env.REACT_APP_LOCALHOST_URL}/api/task?id=${id}`);
     return response.data;
   } catch (e) {
-    console.log(ErrorLogsEnum.DELETE_TODO_ERROR, e);
+    const err = e as AxiosError;
+    return (err.message);
   }
 }

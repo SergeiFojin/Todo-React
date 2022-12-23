@@ -5,7 +5,7 @@ import {
   deleteTaskRequest,
   getTasksRequest,
 } from '../../API/axios';
-import { TodoActionsEnum } from '../actions';
+import { TodoActionsEnum } from '../todoReducer/todoActions';
 import { TodoActionsEnumSaga } from './actions';
 import { Todo } from '../../types/types';
 import {
@@ -15,23 +15,49 @@ import {
   CompleteTodoSaga,
   DeleteTodoSaga,
 } from './types';
+import { FetchActionsEnum } from '../fetchReducer/fetchActions';
+import { ErrorLogsEnum } from '../../types/errorLogs';
 
 function* getTodosWorker() {
-  const result: Todo[] = yield call(getTasksRequest);
-
   yield put({
-    type: TodoActionsEnum.GET_TODOS,
-    payload: result,
+    type: FetchActionsEnum.LOADING_FETCH,
   });
+  const result: Todo[] = yield call(getTasksRequest);
+  if (typeof result === 'string') {
+    yield put({
+      type: FetchActionsEnum.ERROR_FETCH,
+      payload: `${ErrorLogsEnum.GET_TODOS_ERROR} ${result}`,
+    });
+  } else {
+    yield put({
+      type: FetchActionsEnum.SUCCESS_FETCH,
+    });
+    yield put({
+      type: TodoActionsEnum.GET_TODOS,
+      payload: result,
+    });
+  }
 }
 
 export function* addTodoWorker({ payload }: AddTodoSaga) {
-  const result: Todo = yield addTaskRequest(payload.value, payload.isCompleted);
-
   yield put({
-    type: TodoActionsEnum.ADD_TODO,
-    payload: result,
+    type: FetchActionsEnum.ADD_LOADING_FETCH,
   });
+  const result: Todo = yield addTaskRequest(payload.value, payload.isCompleted);
+  if (typeof result === 'string') {
+    yield put({
+      type: FetchActionsEnum.ERROR_FETCH,
+      payload: `${ErrorLogsEnum.ADD_TODO_ERROR} ${result}`,
+    });
+  } else {
+    yield put({
+      type: FetchActionsEnum.SUCCESS_FETCH,
+    });
+    yield put({
+      type: TodoActionsEnum.ADD_TODO,
+      payload: result,
+    });
+  }
 }
 
 export function* completeTodoWorker({ payload }: CompleteTodoSaga) {
