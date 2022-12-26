@@ -5,5 +5,13 @@
   "buttonAll": "All",
   "buttonActive": "Active",
   "buttonCompleted": "Completed",
-  "buttonClearCompleted": "Clear completed"
+  "buttonClearCompleted": "Clear completed",
+  "loginHeader": "Log In",
+  "loginUsername": "USERNAME",
+  "loginPassword": "PASSWORD",
+  "loginSubmit": "LOGIN",
+  "loginUsernameError": "USERNAME field is required!",
+  "loginPasswordError": "PASSWORD field is required!",
+  "loginPasswordLengthError": "PASSWORD field must contain at least 6 characters.",
+  "loginUserNotFound": "Current user not found."
 }

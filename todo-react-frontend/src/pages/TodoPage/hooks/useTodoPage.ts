@@ -31,7 +31,7 @@ export const useTodoPage = () => {
   };
 
   const navigateToMain = () => {
-    navigate('/');
+    navigate('/todos');
   };
 
   return {

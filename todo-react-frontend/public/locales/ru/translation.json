@@ -5,5 +5,13 @@
   "buttonAll": "Все",
   "buttonActive": "Активные",
   "buttonCompleted": "Выполненные",
-  "buttonClearCompleted": "Очистить выполненные"
+  "buttonClearCompleted": "Очистить выполненные",
+  "loginHeader": "Авторизация",
+  "loginUsername": "Имя пользователя",
+  "loginPassword": "Пароль",
+  "loginSubmit": "ВХОД",
+  "loginUsernameError": "Поле 'Имя пользователя' обязательно к заполнению!",
+  "loginPasswordError": "Поле 'Пароль' обязательно к заполнению!",
+  "loginPasswordLengthError": "Поле 'Пароль' должно содержать не менее 6 символов.",
+  "loginUserNotFound": "Данный пользователь не найден."
 }

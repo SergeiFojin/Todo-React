@@ -22,3 +22,8 @@ export enum FetchStatusEnum {
   ERROR = 'ERROR',
   SUCCESS = 'SUCCESS',
 }
+
+export const user = {
+  username: 'user',
+  password: '123456',
+};
