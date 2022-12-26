@@ -25,5 +25,6 @@ module.exports = {
     'no-console': 0,
     'object-curly-newline': 0,
     'max-len': [2, { code: 110 }],
+    'react/jsx-props-no-spreading': 0,
   },
 };
