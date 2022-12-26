@@ -33,10 +33,7 @@ const TodoPage = () => {
           <S.TodoBackImg src="/source/back.png" alt="back.png" />
         </S.TodoBack>
       </S.Todo>
-      {
-        fetchStatus === FetchStatusEnum.ERROR
-        && <ErrorMessage />
-      }
+      {(fetchStatus === FetchStatusEnum.ERROR && <ErrorMessage />)}
     </S.Body>
   );
 };

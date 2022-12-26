@@ -23,6 +23,7 @@ function* getTodosWorker() {
     yield put({
       type: TodoActionsEnum.LOADING_TODO,
     });
+
     const result: Todo[] = yield call(getTasksRequest);
     yield put({
       type: TodoActionsEnum.GET_TODOS,
@@ -42,6 +43,7 @@ export function* addTodoWorker({ payload }: AddTodoSaga) {
     yield put({
       type: TodoActionsEnum.ADDING_TODO,
     });
+
     const result: Todo[] = yield addTaskRequest(payload.value, payload.isCompleted);
     yield put({
       type: TodoActionsEnum.ADD_TODO,

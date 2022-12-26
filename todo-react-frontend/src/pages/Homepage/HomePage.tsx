@@ -24,10 +24,7 @@ const HomePage = () => {
       <LanguageSwitcher />
       <S.Header>{t('header')}</S.Header>
       <TodoInput />
-      {
-        fetchStatus === FetchStatusEnum.ERROR
-        && <ErrorMessage />
-      }
+      {(fetchStatus === FetchStatusEnum.ERROR && <ErrorMessage />)}
       {
         fetchStatus === FetchStatusEnum.LOADING
           ? <Loader />
