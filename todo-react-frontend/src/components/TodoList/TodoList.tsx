@@ -9,7 +9,7 @@ import { Todo, TodoFilterEnum } from '../../types/types';
 const TodoList = () => {
   const [filter, setFilter] = useState<string>(TodoFilterEnum.ALL);
   const navigate = useNavigate();
-  const todos: Todo[] = useAppSelector((state) => state.todos);
+  const todos: Todo[] = useAppSelector((state) => state.todoReducer.todos);
 
   if (todos.length === 0) {
     return null;

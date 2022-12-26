@@ -15,3 +15,10 @@ export type languagesType = {
   ru: {nativeName: string};
   [lng: string]: {nativeName: string};
 }
+
+export enum FetchStatusEnum {
+  LOADING = 'LOADING',
+  ADD_LOADING = 'ADD_LOADING',
+  ERROR = 'ERROR',
+  SUCCESS = 'SUCCESS',
+}

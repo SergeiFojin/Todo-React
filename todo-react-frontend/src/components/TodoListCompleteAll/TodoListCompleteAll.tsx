@@ -7,7 +7,7 @@ import { Todo } from '../../types/types';
 
 const TodoListCompleteAll = () => {
   const dispatch = useAppDispatch();
-  const todos: Todo[] = useAppSelector((state) => state.todos);
+  const todos: Todo[] = useAppSelector((state) => state.todoReducer.todos);
 
   if (todos.length === 0) {
     return null;

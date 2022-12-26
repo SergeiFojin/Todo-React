@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from '../reducer';
+import todoReducer from '../todoReducer/todoReducer';
 
 export const store = configureStore({
-  reducer,
+  reducer: todoReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: {
       extraArgument: null,
